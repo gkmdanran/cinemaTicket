@@ -1,0 +1,9 @@
+.ticket .btn-area {
+  display: flex;
+  justify-content: space-between;
+  padding: 60rpx 0;
+}
+.ticket .form {
+  padding-right: 15px;
+}
+

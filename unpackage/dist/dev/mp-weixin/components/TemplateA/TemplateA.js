@@ -1,0 +1,341 @@
+(global["webpackJsonp"] = global["webpackJsonp"] || []).push([["components/TemplateA/TemplateA"],{
+
+/***/ 56:
+/*!**************************************************************************************!*\
+  !*** C:/Users/kaiming.gu_sx/Desktop/cinemaTicket/components/TemplateA/TemplateA.vue ***!
+  \**************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _TemplateA_vue_vue_type_template_id_a6310958___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TemplateA.vue?vue&type=template&id=a6310958& */ 57);
+/* harmony import */ var _TemplateA_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TemplateA.vue?vue&type=script&lang=js& */ 59);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _TemplateA_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _TemplateA_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js */ 32);
+
+var renderjs
+
+
+
+
+/* normalize component */
+
+var component = Object(_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _TemplateA_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TemplateA_vue_vue_type_template_id_a6310958___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _TemplateA_vue_vue_type_template_id_a6310958___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null,
+  false,
+  _TemplateA_vue_vue_type_template_id_a6310958___WEBPACK_IMPORTED_MODULE_0__["components"],
+  renderjs
+)
+
+component.options.__file = "components/TemplateA/TemplateA.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ 57:
+/*!*********************************************************************************************************************!*\
+  !*** C:/Users/kaiming.gu_sx/Desktop/cinemaTicket/components/TemplateA/TemplateA.vue?vue&type=template&id=a6310958& ***!
+  \*********************************************************************************************************************/
+/*! exports provided: render, staticRenderFns, recyclableRender, components */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_template_js_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_TemplateA_vue_vue_type_template_id_a6310958___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!./TemplateA.vue?vue&type=template&id=a6310958& */ 58);
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_template_js_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_TemplateA_vue_vue_type_template_id_a6310958___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_template_js_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_TemplateA_vue_vue_type_template_id_a6310958___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return _E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_template_js_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_TemplateA_vue_vue_type_template_id_a6310958___WEBPACK_IMPORTED_MODULE_0__["recyclableRender"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "components", function() { return _E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_template_js_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_TemplateA_vue_vue_type_template_id_a6310958___WEBPACK_IMPORTED_MODULE_0__["components"]; });
+
+
+
+/***/ }),
+
+/***/ 58:
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!C:/Users/kaiming.gu_sx/Desktop/cinemaTicket/components/TemplateA/TemplateA.vue?vue&type=template&id=a6310958& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns, recyclableRender, components */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
+var components
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+}
+var recyclableRender = false
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ 59:
+/*!***************************************************************************************************************!*\
+  !*** C:/Users/kaiming.gu_sx/Desktop/cinemaTicket/components/TemplateA/TemplateA.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_TemplateA_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!./TemplateA.vue?vue&type=script&lang=js& */ 60);
+/* harmony import */ var _E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_TemplateA_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_TemplateA_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_TemplateA_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_TemplateA_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_script_js_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_E_GKMruanjian_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_TemplateA_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ 60:
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!C:/Users/kaiming.gu_sx/Desktop/cinemaTicket/components/TemplateA/TemplateA.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+//
+//
+//
+//
+//
+//
+//
+var _default2 = {
+  name: "TemplateA",
+  props: {
+    ticketInfo: {
+      type: Object,
+      default: function _default() {
+        return {
+          bigImg: '/static/lldq.jpg',
+          mainTitle: '流浪地球2',
+          subTitle: 'The Wandering Earth II',
+          duration: 147,
+          kinds: ['科幻', '冒险', '灾难'],
+          releaseTime: '2023-01-22',
+          cinema: '幸福蓝海国际影城绿宝店',
+          hell: '6号-口味王厅',
+          seat: '5排9座',
+          price: 52,
+          dateTime: '2022-12-11'
+        };
+      }
+    }
+  },
+  data: function data() {
+    return {
+      ticketUrl: ''
+    };
+  },
+  methods: {
+    createImage: function createImage() {
+      var _this = this;
+      uni.canvasToTempFilePath({
+        quality: 1,
+        canvasId: 'TemplateA',
+        complete: function complete(res) {
+          console.log(res);
+          if (res.tempFilePath) {
+            _this.ticketUrl = res.tempFilePath.replace(/[\r\n]/g, '');
+            _this.$emit('getUrl', _this.ticketUrl);
+          }
+        }
+      }, this);
+    },
+    drawText: function drawText(ctx, str, leftWidth, initHeight, canvasWidth) {
+      var lineWidth = 0;
+      var lastSubStrIndex = 0; //每次开始截取的字符串的索引
+      for (var i = 0; i < str.length; i++) {
+        lineWidth += ctx.measureText(str[i]).width;
+        if (lineWidth > canvasWidth) {
+          ctx.fillText(str.substring(lastSubStrIndex, i), leftWidth, initHeight); //绘制截取部分
+          initHeight += 16; //22为 文字大小20 + 2
+          lineWidth = 0;
+          lastSubStrIndex = i;
+        }
+        if (i == str.length - 1) {
+          //绘制剩余部分
+          ctx.fillText(str.substring(lastSubStrIndex, i + 1), leftWidth, initHeight);
+        }
+      }
+    },
+    drawTemplate: function drawTemplate() {
+      var _this2 = this;
+      var width = 300;
+      var leftOffset = 10;
+      var rightOffset = width - leftOffset;
+      var ctx = uni.createCanvasContext('TemplateA', this);
+      ctx.setFillStyle('#f1f1f1');
+      ctx.fillRect(0, 0, width, 420);
+      ctx.drawImage(this.ticketInfo.bigImg, 0, 0, 300, 420);
+      //副标题
+      ctx.setFontSize(12);
+      ctx.setFillStyle('#191919');
+      ctx.fillText(this.ticketInfo.subTitle, leftOffset, 470);
+      //虚线
+      var dashYarr = [480, 552];
+      dashYarr.forEach(function (item) {
+        ctx.setLineDash([8, 6], 4);
+        ctx.beginPath();
+        ctx.moveTo(leftOffset, item);
+        ctx.lineTo(rightOffset, item);
+        ctx.setLineWidth(2);
+        ctx.setStrokeStyle('#7d7e7b');
+        ctx.stroke();
+      });
+      //详情
+      var detailH = 20;
+      var detailArr = ["".concat(this.ticketInfo.duration, " \u5206\u949F"), this.ticketInfo.kinds.join('/'), "".concat(this.ticketInfo.releaseTime, " \u4E0A\u6620")];
+      detailArr.forEach(function (item, index) {
+        ctx.setFontSize(12);
+        ctx.setFillStyle('#4d4d4d');
+        ctx.fillText(item, leftOffset, 500 + index * detailH);
+      });
+      //票信息
+      var infoWidth = (width - 2 * leftOffset) / 3;
+      var InfoLabelArr = [{
+        txt: 'CINEMA/影院:',
+        x: leftOffset,
+        y: 580
+      }, {
+        txt: 'HELL/影厅:',
+        x: leftOffset,
+        y: 630
+      }, {
+        txt: 'SEAT/座位:',
+        x: leftOffset + infoWidth,
+        y: 630
+      }, {
+        txt: 'PRICE/票价:',
+        x: leftOffset + infoWidth * 2,
+        y: 630
+      }, {
+        txt: 'DATE/日期:',
+        x: leftOffset,
+        y: 690
+      }, {
+        txt: 'TIME/时间:',
+        x: leftOffset + infoWidth,
+        y: 690
+      }];
+      InfoLabelArr.forEach(function (item) {
+        ctx.setFontSize(13);
+        ctx.setFillStyle('#928d89');
+        ctx.fillText(item.txt, item.x, item.y);
+      });
+      var InfoCntArr = [{
+        txt: this.ticketInfo.cinema,
+        x: leftOffset,
+        y: 600
+      }, {
+        txt: this.ticketInfo.hell,
+        x: leftOffset,
+        y: 650
+      }, {
+        txt: this.ticketInfo.seat,
+        x: leftOffset + infoWidth,
+        y: 650
+      }, {
+        txt: "\uFFE5 ".concat(this.ticketInfo.price),
+        x: leftOffset + infoWidth * 2,
+        y: 650
+      }, {
+        txt: this.ticketInfo.dateTime.split(' ')[0],
+        x: leftOffset,
+        y: 710
+      }, {
+        txt: this.ticketInfo.dateTime.split(' ')[1],
+        x: leftOffset + infoWidth,
+        y: 710
+      }];
+      InfoCntArr.forEach(function (item, index) {
+        ctx.setFontSize(12);
+        ctx.setFillStyle('#928d89');
+        if (index === 0) {
+          ctx.fillText(item.txt, item.x, item.y);
+        } else {
+          _this2.drawText(ctx, item.txt, item.x, item.y, infoWidth - 5);
+        }
+      });
+      //虚线
+      ctx.setLineDash([10, 5], 5);
+      ctx.beginPath();
+      ctx.moveTo(0, 750);
+      ctx.lineTo(width, 750);
+      ctx.setLineWidth(3);
+      ctx.setStrokeStyle('#000000');
+      ctx.stroke();
+      //打孔点
+      ctx.beginPath();
+      ctx.arc(0, 750, 8, 0, 360, false);
+      ctx.arc(width, 750, 8, 0, 360, false);
+      ctx.setFillStyle('#000000');
+      ctx.fill();
+      //底部虚线
+      ctx.setLineDash([10, 5], 5);
+      ctx.beginPath();
+      ctx.moveTo(0, 850);
+      ctx.lineTo(width, 850);
+      ctx.setStrokeStyle('#7d7e7b');
+      ctx.stroke();
+      //thank
+      ctx.setFontSize(14);
+      ctx.setTextAlign('center');
+      ctx.setFillStyle('#000000');
+      ctx.fillText("".concat(this.ticketInfo.dateTime.split(' ')[0], " \u89C2\u5F71\u7559\u5FF5"), 150, 810);
+      ctx.font = 'normal bold 16px Arial,sans-serif ';
+      ctx.setFillStyle('#000000');
+      ctx.fillText('THANK YOU FOR WATCHING', 150, 780);
+      //主标题
+      ctx.setTextAlign('left');
+      ctx.setFontSize(16);
+      ctx.setFillStyle('#000000');
+      ctx.fillText(this.ticketInfo.mainTitle, leftOffset, 450);
+      ctx.draw();
+    }
+  },
+  mounted: function mounted() {
+    this.drawTemplate();
+  }
+};
+exports.default = _default2;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
+
+/***/ })
+
+}]);
+//# sourceMappingURL=../../../.sourcemap/mp-weixin/components/TemplateA/TemplateA.js.map
+;(global["webpackJsonp"] = global["webpackJsonp"] || []).push([
+    'components/TemplateA/TemplateA-create-component',
+    {
+        'components/TemplateA/TemplateA-create-component':(function(module, exports, __webpack_require__){
+            __webpack_require__('2')['createComponent'](__webpack_require__(56))
+        })
+    },
+    [['components/TemplateA/TemplateA-create-component']]
+]);

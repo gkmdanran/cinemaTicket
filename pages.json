@@ -14,6 +14,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/picture/picture",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "票根",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

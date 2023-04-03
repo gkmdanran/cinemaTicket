@@ -1,0 +1,50 @@
+<template>
+	<view class="picture">
+		<div class="wrap" v-if="ticketUrl">
+			<image :src="ticketUrl" mode="widthFix" show-menu-by-longpress></image>
+		</div>
+		
+		<div class="tips">长按票根，保存图片至本地相册</div>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				ticketUrl: '2'
+			}
+		},
+		methods: {
+			handleCrop(e) {
+				console.log(e)
+			}
+		},
+		onLoad() {
+			this.ticketUrl = uni.getStorageSync('ticket_url') || '';
+			console.log(this.ticketUrl)
+		}
+	}
+</script>
+
+<style lang="less" scoped>
+	.picture {
+		.wrap {
+			width: 300px;
+			display: flex;
+			margin: 20px auto;
+
+			image {
+				width: 300px !important;
+			}
+		}
+
+		.tips {
+			padding-bottom: 100rpx;
+			text-align: center;
+			color: #f6cb75;
+		}
+
+
+	}
+</style>

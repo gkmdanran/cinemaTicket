@@ -1,0 +1,1 @@
+<view class="picture data-v-c0f1f9f8"><block wx:if="{{ticketUrl}}"><view class="wrap _div data-v-c0f1f9f8"><image src="{{ticketUrl}}" mode="widthFix" show-menu-by-longpress="{{true}}" class="data-v-c0f1f9f8"></image></view></block><view class="tips _div data-v-c0f1f9f8">长按票根，保存图片至本地相册</view></view>

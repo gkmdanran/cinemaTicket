@@ -1,9 +1,12 @@
-.ticket .btn-area {
+.ticket .btn-area.data-v-ea782f74 {
   display: flex;
   justify-content: space-between;
   padding: 60rpx 0;
 }
-.ticket .form {
-  padding-right: 15px;
+.ticket .btn-area button.data-v-ea782f74 {
+  width: 100px;
+  height: 36px;
+  line-height: 36px;
+  font-size: 14px;
 }
 

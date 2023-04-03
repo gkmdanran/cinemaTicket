@@ -1,52 +1,110 @@
 <template>
-	<div class="TemplateA">
-		<canvas style="width: 300px; height: 850px;margin: 0 auto;background-color: #fff;" canvas-id="TemplateA"
-			id="TemplateA"></canvas>
-	</div>
+	<view class="TemplateA">
+		<canvas class="canvas" canvas-id="TemplateA" id="TemplateA"></canvas>
+		<view class="wrap">
+			<image :src="ticketUrl" mode="widthFix"></image>
+		</view>
+		<uni-drawer ref="drawer" mode="right" :width="320" :maskClick="false">
+			<view class="form">
+				<uni-forms :modelValue="ticketInfo" label-align="right" label-width="90px">
+					<uni-forms-item label="海报:" name="bigImg">
+						<image :src="ticketInfo.bigImg" mode="widthFix"></image>
+						<button size="mini" type="primary" @click="changePic">更换海报</button>
+					</uni-forms-item>
+					<uni-forms-item label="标题:" name="mainTitle">
+						<uni-easyinput type="text" v-model="ticketInfo.mainTitle" placeholder="例:流浪地球2"
+							maxlength="99" />
+					</uni-forms-item>
+					<uni-forms-item label="副标题:" name="subTitle">
+						<uni-easyinput type="text" v-model="ticketInfo.subTitle" placeholder="例:The Wandering Earth II"
+							maxlength="99" />
+					</uni-forms-item>
+					<uni-forms-item label="时长(分钟):" name="duration">
+						<uni-easyinput type="number" v-model="ticketInfo.duration" maxlength="8" />
+					</uni-forms-item>
+					<uni-forms-item label="上映日期:" name="releaseTime">
+						<uni-datetime-picker type="date" :clear-icon="false" v-model="ticketInfo.releaseTime" />
+					</uni-forms-item>
+					<uni-forms-item label="影院:" name="cinema">
+						<uni-easyinput type="text" v-model="ticketInfo.cinema" placeholder="例:幸福蓝海国际影城"
+							maxlength="99" />
+					</uni-forms-item>
+					<uni-forms-item label="影厅:" name="hell">
+						<uni-easyinput type="text" v-model="ticketInfo.hell" placeholder="例:5号全景声厅" maxlength="18" />
+					</uni-forms-item>
+					<uni-forms-item label="座位:" name="seat">
+						<uni-easyinput type="text" v-model="ticketInfo.seat" placeholder="例:5拍14座" maxlength="16" />
+					</uni-forms-item>
+					<uni-forms-item label="票价(￥):" name="price">
+						<uni-easyinput type="digit" v-model="ticketInfo.price" maxlength="8" />
+					</uni-forms-item>
+					<uni-forms-item label="放映时间:" name="dateTime">
+						<uni-datetime-picker type="datetime" :clear-icon="false" v-model="ticketInfo.dateTime"
+							hide-second />
+					</uni-forms-item>
+				</uni-forms>
+				<view class="btn-area">
+					<button type="primary" @click="cancel">取 消</button>
+					<button @click="save">预 览</button>
+				</view>
+			</view>
+		</uni-drawer>
+		<view v-if="showCropper" class="setimg">
+			<qf-image-cropper :width="300" :height="420" :src="ticketInfo.bigImg" @crop="handleCrop" />
+		</view>
+	</view>
 </template>
 
 <script>
 	export default {
 		name: "TemplateA",
-		props: {
-			ticketInfo: {
-				type: Object,
-				default: function() {
-					return {
-						bigImg: '/static/lldq.jpg',
-						mainTitle: '流浪地球2',
-						subTitle: 'The Wandering Earth II',
-						duration: 147,
-						kinds: ['科幻', '冒险', '灾难'],
-						releaseTime: '2023-01-22',
-						cinema: '幸福蓝海国际影城绿宝店',
-						hell: '6号-口味王厅',
-						seat: '5排9座',
-						price: 52,
-						dateTime: '2022-12-11',
-						
-					}
+		data() {
+			return {
+				showCropper: false,
+				ticketUrl: '',
+				preTicket: {},
+				ticketInfo: {
+					bigImg: '/static/lldq.jpg',
+					mainTitle: '流浪地球2',
+					subTitle: 'The Wandering Earth II',
+					duration: 147,
+					kinds: ['科幻', '冒险', '灾难'],
+					releaseTime: '2023-01-22',
+					cinema: '幸福蓝海国际影城',
+					hell: '5号全景声厅',
+					seat: '5排14座',
+					price: '52.00',
+					dateTime: '2023-01-23 14:10',
 				}
 			}
 		},
-		data() {
-			return {
-				ticketUrl: '',
-			};
-		},
 		methods: {
+			changePic() {
+				this.showCropper = true
+			},
+			handleCrop({
+				tempFilePath
+			}) {
+				this.ticketInfo.bigImg = tempFilePath
+				this.showCropper = false
+			},
+			cancel() {
+				this.ticketInfo = JSON.parse(JSON.stringify(this.preTicket))
+				this.$refs['drawer'].close()
+			},
+			save() {
+				this.$refs['drawer'].close()
+				this.drawTemplate()
+			},
 			createImage() {
 				uni.canvasToTempFilePath({
 					quality: 1,
 					canvasId: 'TemplateA',
 					complete: (res) => {
-						console.log(res)
 						if (res.tempFilePath) {
 							this.ticketUrl = res.tempFilePath.replace(/[\r\n]/g, '');
-							this.$emit('getUrl', this.ticketUrl)
 						}
 					},
-
 				}, this)
 			},
 			drawText(ctx, str, leftWidth, initHeight, canvasWidth) {
@@ -71,9 +129,17 @@
 				const leftOffset = 10
 				const rightOffset = width - leftOffset
 				const ctx = uni.createCanvasContext('TemplateA', this);
+				//票根
+				ctx.setFillStyle('#fff')
+				ctx.fillRect(0, 0, width, 850);
+				//海报
 				ctx.setFillStyle('#f1f1f1')
 				ctx.fillRect(0, 0, width, 420);
 				ctx.drawImage(this.ticketInfo.bigImg, 0, 0, 300, 420)
+				//主标题
+				ctx.setFontSize(16)
+				ctx.setFillStyle('#000000')
+				ctx.fillText(this.ticketInfo.mainTitle, leftOffset, 450);
 				//副标题
 				ctx.setFontSize(12)
 				ctx.setFillStyle('#191919')
@@ -205,19 +271,76 @@
 				ctx.setTextAlign('center')
 				ctx.setFillStyle('#000000')
 				ctx.fillText(`${this.ticketInfo.dateTime.split(' ')[0]} 观影留念`, 150, 810);
-				ctx.font = 'normal bold 16px Arial,sans-serif '
 				ctx.setFillStyle('#000000')
 				ctx.fillText('THANK YOU FOR WATCHING', 150, 780);
-				//主标题
 				ctx.setTextAlign('left')
-				ctx.setFontSize(16)
-				ctx.setFillStyle('#000000')
-				ctx.fillText(this.ticketInfo.mainTitle, leftOffset, 450);
-				ctx.draw()
-			}
+				ctx.draw(false, () => {
+					this.createImage()
+				})
+			},
+			showDrawer() {
+				this.preTicket = JSON.parse(JSON.stringify(this.ticketInfo))
+				this.$refs['drawer'].open()
+			},
 		},
 		mounted() {
 			this.drawTemplate()
 		}
 	}
 </script>
+<style lang="less" scoped>
+	.TemplateA {
+		position: relative;
+
+		.setimg {
+			position: absolute;
+			z-index: 999999;
+			width: 100vw;
+			height: 100vh;
+		}
+
+		.canvas {
+			top: -850px;
+			width: 300px;
+			height: 850px;
+		}
+
+		.wrap {
+			position: absolute;
+			top: 0;
+			left: 50%;
+			margin-left: -150px;
+			width: 300px;
+			display: flex;
+
+			image {
+				width: 300px !important;
+			}
+		}
+
+		.form {
+			overflow: auto;
+			height: 100vh;
+			padding: 30px 15px 0 0;
+
+			image {
+				margin: 0 auto;
+				width: 100px !important;
+				margin-right: 10px;
+			}
+
+			.btn-area {
+				height: 100px;
+				display: flex;
+				justify-content: space-between;
+
+				button {
+					width: 100px;
+					height: 36px;
+					line-height: 36px;
+					font-size: 14px;
+				}
+			}
+		}
+	}
+</style>

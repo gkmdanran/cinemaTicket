@@ -1,4 +1,5 @@
 {
+  "setting": {},
   "condition": {
     "plugin": {
       "list": []
@@ -14,6 +15,12 @@
         {
           "name": "pages/ticket/ticket",
           "pathName": "pages/ticket/ticket",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/picture/picture",
+          "pathName": "pages/picture/picture",
           "query": "",
           "scene": null
         }

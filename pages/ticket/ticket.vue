@@ -1,9 +1,9 @@
 <template>
 	<view class="ticket">
-		<TemplateA ref="templateA"></TemplateA>
+		<TemplateA ref="TemplateA" :ticketInfo="ticketInfo" @save="saveTemplate"></TemplateA>
 		<view class="btn-area">
-			<button type="primary" @click="createImage">生成票根</button>
-			<button @click="showDrawer">编辑票根</button>
+			<button type="primary" @click="createTicket">生成票根</button>
+			<button @click="editTicket">编辑票根</button>
 		</view>
 		<uni-popup ref="alertDialog" type="dialog">
 			<uni-popup-dialog type="info" cancelText="取消" confirmText="同意" title="告知" content="此小程序仅供娱乐,不可商用!"
@@ -16,36 +16,59 @@
 	export default {
 		data() {
 			return {
+				ticketInfo: {},
+				currentTemplate: 'TemplateA'
 			}
 		},
 		methods: {
-			
-			showDrawer() {
-				this.$refs['templateA'].showDrawer()
+			//编辑票根
+			editTicket() {
+				this.$refs[`${this.currentTemplate}`].showDrawer()
 			},
-			createImage() {
+			//生成票根
+			createTicket() {
 				this.$refs.alertDialog.open()
 			},
-			dialogConfirm() {
-				uni.setStorage({
-					key: 'ticket_url',
-					data: this.$refs['templateA'].ticketUrl,
-					success: function() {
-						uni.navigateTo({
-							url: '/pages/picture/picture'
-						});
-					}
-				});
-				
+			//缓存票根
+			saveTemplate(form) {
+				uni.setStorageSync('ticket_form', JSON.stringify(form))
+				this.ticketInfo = form
+				this.$nextTick(() => {
+					this.$refs[`${this.currentTemplate}`].drawTemplate()
+				})
 			},
-
-
+			//确认生成
+			dialogConfirm() {
+				uni.setStorageSync('ticket_url', this.$refs[`${this.currentTemplate}`].ticketUrl)
+				uni.navigateTo({
+					url: '/pages/picture/picture'
+				});
+			},
 		},
-
+		onLoad() {
+			//从缓存中读取
+			const storageForm = uni.getStorageSync('ticket_form')
+			if (storageForm) {
+				this.ticketInfo = JSON.parse(storageForm)
+			} else {
+				this.ticketInfo = {
+					bigImg: '../../static/lldq.jpg',
+					mainTitle: '流浪地球2',
+					subTitle: 'The Wandering Earth II',
+					duration: 147,
+					kinds: '科幻/冒险/灾难',
+					releaseTime: '2023-01-22',
+					cinema: '幸福蓝海国际影城',
+					hall: '5号全景声厅',
+					seat: '5排14座',
+					price: '52.00',
+					dateTime: '2023-01-23 14:10',
+					finishIcon: '../../static/finish.png',
+				}
+			}
+		},
 	}
 </script>
-
-
 
 <style lang="less" scoped>
 	.ticket {

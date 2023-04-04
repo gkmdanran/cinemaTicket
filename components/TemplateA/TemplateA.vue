@@ -2,120 +2,49 @@
 	<view class="TemplateA">
 		<canvas class="canvas" canvas-id="TemplateA" id="TemplateA"></canvas>
 		<view class="wrap">
-			<image :src="ticketUrl" mode="widthFix"></image>
+			<image :src="ticketUrl" mode="widthFix" :style="{width:'200px'}"></image>
 		</view>
-		<uni-drawer ref="drawer" mode="right" :width="320" :maskClick="false">
-			<scroll-view scroll-y="true" class="scroll-y">
-				<view class="form">
-					<uni-forms :modelValue="ticketInfo" label-align="right" label-width="90px">
-						<uni-forms-item label="海报:" name="bigImg">
-							<image :src="ticketInfo.bigImg" mode="widthFix"></image>
-							<button size="mini" type="primary" @click="selectImg">更换海报</button>
-						</uni-forms-item>
-						<uni-forms-item label="标题:" name="mainTitle">
-							<uni-easyinput type="text" v-model="ticketInfo.mainTitle" placeholder="例:流浪地球2"
-								maxlength="99" />
-						</uni-forms-item>
-						<uni-forms-item label="副标题:" name="subTitle">
-							<uni-easyinput type="text" v-model="ticketInfo.subTitle"
-								placeholder="例:The Wandering Earth II" maxlength="99" />
-						</uni-forms-item>
-						<uni-forms-item label="时长(分钟):" name="duration">
-							<uni-easyinput type="number" v-model="ticketInfo.duration" maxlength="8" />
-						</uni-forms-item>
-						<uni-forms-item label="分类:" name="kinds">
-							<uni-easyinput type="text" v-model="ticketInfo.kinds" placeholder="例:科幻/冒险/灾难"
-								maxlength="99" />
-						</uni-forms-item>
-						<uni-forms-item label="上映日期:" name="releaseTime">
-							<uni-datetime-picker type="date" :clear-icon="false" v-model="ticketInfo.releaseTime" />
-						</uni-forms-item>
-						<uni-forms-item label="影院:" name="cinema">
-							<uni-easyinput type="text" v-model="ticketInfo.cinema" placeholder="例:幸福蓝海国际影城"
-								maxlength="99" />
-						</uni-forms-item>
-						<uni-forms-item label="影厅:" name="hell">
-							<uni-easyinput type="text" v-model="ticketInfo.hell" placeholder="例:5号全景声厅"
-								maxlength="18" />
-						</uni-forms-item>
-						<uni-forms-item label="座位:" name="seat">
-							<uni-easyinput type="text" v-model="ticketInfo.seat" placeholder="例:5拍14座" maxlength="16" />
-						</uni-forms-item>
-						<uni-forms-item label="票价(￥):" name="price">
-							<uni-easyinput type="digit" v-model="ticketInfo.price" maxlength="8" />
-						</uni-forms-item>
-						<uni-forms-item label="放映时间:" name="dateTime">
-							<uni-datetime-picker type="datetime" :clear-icon="false" v-model="ticketInfo.dateTime"
-								hide-second />
-						</uni-forms-item>
-					</uni-forms>
-					<view class="btn-area">
-						<button type="primary" @click="cancel">取 消</button>
-						<button @click="save">预 览</button>
-					</view>
-				</view>
-			</scroll-view>
-		</uni-drawer>
-		<ksp-cropper v-if="showCrop" mode="ratio" :width="300" :height="420" :maxWidth="1024" :maxHeight="1024"
-			:url="ticketInfo.bigImg" @cancel="oncancel" @ok="onok" />
+		<CommonForm ref="form" @save="handleSave" :form="ticketInfo" :formSetting="formSetting">
+		</CommonForm>
 	</view>
 </template>
 
 <script>
 	export default {
 		name: "TemplateA",
+		props: {
+			ticketInfo: {
+				type: Object,
+			}
+		},
 		data() {
 			return {
-				showCrop: false,
-				preBigImg: '',
 				ticketUrl: '',
-				preTicket: {},
-				ticketInfo: {
-					bigImg: '../../static/lldq.jpg',
-					mainTitle: '流浪地球2',
-					subTitle: 'The Wandering Earth II',
-					duration: 147,
-					kinds: '科幻/冒险/灾难',
-					releaseTime: '2023-01-22',
-					cinema: '幸福蓝海国际影城',
-					hell: '5号全景声厅',
-					seat: '5排14座',
-					price: '52.00',
-					dateTime: '2023-01-23 14:10',
+				formSetting: {
+					bigImg: true,
+					mainTitle: true,
+					subTitle: true,
+					duration: true,
+					kinds: true,
+					releaseTime: true,
+					cinema: true,
+					hall: true,
+					seat: true,
+					price: true,
+					dateTime: true,
 				}
 			}
 		},
 		methods: {
-			selectImg(rsp) {
-				uni.chooseImage({
-					count: 1,
-					success: (rst) => {
-						this.preBigImg = this.ticketInfo.bigImg
-						this.ticketInfo.bigImg = rst.tempFilePaths[0];
-						this.showCrop = true
-					}
-				});
-			},
-			onok(ev) {
-				this.ticketInfo.bigImg = ev.path;
-				this.showCrop = false
-			},
-			oncancel() {
-				this.ticketInfo.bigImg = this.preBigImg
-				this.showCrop = false
-			},
+			//打开抽屉
 			showDrawer() {
-				this.preTicket = JSON.parse(JSON.stringify(this.ticketInfo))
-				this.$refs['drawer'].open()
+				this.$refs['form'].showDrawer()
 			},
-			cancel() {
-				this.ticketInfo = JSON.parse(JSON.stringify(this.preTicket))
-				this.$refs['drawer'].close()
+			//保存预览
+			handleSave(form) {
+				this.$emit('save', form)
 			},
-			save() {
-				this.$refs['drawer'].close()
-				this.drawTemplate()
-			},
+			//生成图片
 			createImage() {
 				uni.canvasToTempFilePath({
 					quality: 1,
@@ -127,6 +56,7 @@
 					},
 				}, this)
 			},
+			//文本换行
 			drawText(ctx, str, leftWidth, initHeight, canvasWidth) {
 				let lineWidth = 0;
 				let lastSubStrIndex = 0; //每次开始截取的字符串的索引
@@ -142,8 +72,8 @@
 						ctx.fillText(str.substring(lastSubStrIndex, i + 1), leftWidth, initHeight);
 					}
 				}
-
 			},
+			//绘制canvas
 			drawTemplate() {
 				const width = 300
 				const leftOffset = 10
@@ -157,9 +87,11 @@
 				ctx.fillRect(0, 0, width, 420);
 				ctx.drawImage(this.ticketInfo.bigImg, 0, 0, 300, 420)
 				//主标题
+				ctx.font = 'normal bold 16px Arial'
 				ctx.setFontSize(16)
 				ctx.setFillStyle('#000000')
 				ctx.fillText(this.ticketInfo.mainTitle, leftOffset, 450);
+				ctx.font = 'normal normal 12px Arial'
 				//副标题
 				ctx.setFontSize(12)
 				ctx.setFillStyle('#191919')
@@ -195,7 +127,7 @@
 						y: 580
 					},
 					{
-						txt: 'HELL/影厅:',
+						txt: 'HALL/影厅:',
 						x: leftOffset,
 						y: 630
 					},
@@ -231,7 +163,7 @@
 						y: 600
 					},
 					{
-						txt: this.ticketInfo.hell,
+						txt: this.ticketInfo.hall,
 						x: leftOffset,
 						y: 650
 					},
@@ -286,14 +218,19 @@
 				ctx.lineTo(width, 850);
 				ctx.setStrokeStyle('#7d7e7b')
 				ctx.stroke();
-				//thank
-				ctx.setFontSize(14)
+				//感谢
+				ctx.font = 'normal bold 16px Arial'
 				ctx.setTextAlign('center')
 				ctx.setFillStyle('#000000')
-				ctx.fillText(`${this.ticketInfo.dateTime.split(' ')[0]} 观影留念`, 150, 810);
-				ctx.setFillStyle('#000000')
 				ctx.fillText('THANK YOU FOR WATCHING', 150, 780);
+				ctx.font = 'normal normal 14px Arial'
+				//留念日期
+				ctx.setFontSize(14)
+				ctx.setFillStyle('#000000')
+				ctx.fillText(`${this.ticketInfo.dateTime.split(' ')[0].split('-').join('/')} 观影留念`, 150, 810);
 				ctx.setTextAlign('left')
+				//已放映
+				ctx.drawImage(this.ticketInfo.finishIcon, 210, 760, 80, 80)
 				ctx.draw(false, () => {
 					this.createImage()
 				})
@@ -317,41 +254,10 @@
 		.wrap {
 			position: absolute;
 			top: 0;
-			left: 50%;
-			margin-left: -150px;
-			width: 300px;
+			width: 100%;
 			display: flex;
-
-			image {
-				width: 300px !important;
-			}
+			justify-content: center;
 		}
 
-		.scroll-y {
-			height: 100%;
-
-			.form {
-				padding-right: 15px;
-				padding-top: 20px;
-
-				image {
-					width: 100px !important;
-					margin-right: 10px;
-				}
-
-				.btn-area {
-					height: 80px;
-					display: flex;
-					justify-content: space-between;
-
-					button {
-						width: 100px;
-						height: 36px;
-						line-height: 36px;
-						font-size: 14px;
-					}
-				}
-			}
-		}
 	}
 </style>

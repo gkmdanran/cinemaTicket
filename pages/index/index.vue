@@ -8,10 +8,11 @@
 	export default {
 		data() {
 			return {
+
 			}
 		},
 		methods: {
-			makeTicket(){
+			makeTicket() {
 				uni.navigateTo({
 					url: '/pages/ticket/ticket'
 				});
@@ -21,7 +22,11 @@
 </script>
 
 <style lang="less" scoped>
-	.index-contaioner{
+	.index-contaioner {
 		padding: 10px;
+
+		button {
+			margin-top: 80px
+		}
 	}
 </style>

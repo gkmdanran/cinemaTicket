@@ -1,0 +1,153 @@
+<template>
+	<div class="common-form">
+		<ksp-cropper v-if="showCrop" mode="ratio" :width="300" :height="420" :maxWidth="1024" :maxHeight="1024"
+			:url="ticketInfo.bigImg" @cancel="cancelCrop" @ok="confirmCrop" />
+		<uni-drawer ref="drawer" mode="right" :width="320" :maskClick="false">
+			<scroll-view scroll-y="true" class="scroll-y">
+				<view class="form">
+					<uni-forms :modelValue="ticketInfo" label-align="right" label-width="90px">
+						<uni-forms-item label="海报:" name="bigImg" v-if="formSetting.bigImg">
+							<image :src="ticketInfo.bigImg" mode="widthFix"></image>
+							<button size="mini" type="primary" @click="selectImg">更换海报</button>
+						</uni-forms-item>
+						<uni-forms-item label="标题:" name="mainTitle" v-if="formSetting.mainTitle">
+							<uni-easyinput type="text" v-model="ticketInfo.mainTitle" placeholder="例:流浪地球2"
+								maxlength="99" />
+						</uni-forms-item>
+						<uni-forms-item label="副标题:" name="subTitle" v-if="formSetting.subTitle">
+							<uni-easyinput type="text" v-model="ticketInfo.subTitle"
+								placeholder="例:The Wandering Earth II" maxlength="99" />
+						</uni-forms-item>
+						<uni-forms-item label="时长(分钟):" name="duration" v-if="formSetting.duration">
+							<uni-easyinput type="number" v-model="ticketInfo.duration" maxlength="8" />
+						</uni-forms-item>
+						<uni-forms-item label="分类:" name="kinds" v-if="formSetting.kinds">
+							<uni-easyinput type="text" v-model="ticketInfo.kinds" placeholder="例:科幻/冒险/灾难"
+								maxlength="99" />
+						</uni-forms-item>
+						<uni-forms-item label="上映日期:" name="releaseTime" v-if="formSetting.releaseTime">
+							<uni-datetime-picker type="date" :clear-icon="false" v-model="ticketInfo.releaseTime" />
+						</uni-forms-item>
+						<uni-forms-item label="影院:" name="cinema" v-if="formSetting.cinema">
+							<uni-easyinput type="text" v-model="ticketInfo.cinema" placeholder="例:幸福蓝海国际影城"
+								maxlength="99" />
+						</uni-forms-item>
+						<uni-forms-item label="影厅:" name="hall" v-if="formSetting.hall">
+							<uni-easyinput type="text" v-model="ticketInfo.hall" placeholder="例:5号全景声厅"
+								maxlength="18" />
+						</uni-forms-item>
+						<uni-forms-item label="座位:" name="seat" v-if="formSetting.seat">
+							<uni-easyinput type="text" v-model="ticketInfo.seat" placeholder="例:5拍14座" maxlength="16" />
+						</uni-forms-item>
+						<uni-forms-item label="票价(￥):" name="price" v-if="formSetting.price">
+							<uni-easyinput type="digit" v-model="ticketInfo.price" maxlength="8" />
+						</uni-forms-item>
+						<uni-forms-item label="放映时间:" name="dateTime" v-if="formSetting.dateTime">
+							<uni-datetime-picker type="datetime" :clear-icon="false" v-model="ticketInfo.dateTime"
+								hide-second />
+						</uni-forms-item>
+					</uni-forms>
+					<view class="btn-area">
+						<button type="primary" @click="cancel">取 消</button>
+						<button @click="save">预 览</button>
+					</view>
+				</view>
+			</scroll-view>
+		</uni-drawer>
+	</div>
+</template>
+
+<script>
+	export default {
+		name: "CommonForm",
+		props: {
+			form: {
+				type: Object,
+			},
+			formSetting: {
+				type: Object,
+			},
+		},
+		data() {
+			return {
+				showCrop: false,
+				preBigImg: '',
+				preTicket: {},
+				ticketInfo: {}
+			};
+		},
+		methods: {
+			//打开抽屉
+			showDrawer() {
+				this.preTicket = JSON.parse(JSON.stringify(this.ticketInfo))
+				this.$refs['drawer'].open()
+			},
+			//选择图片
+			selectImg(rsp) {
+				uni.chooseImage({
+					count: 1,
+					success: (rst) => {
+						this.preBigImg = this.ticketInfo.bigImg
+						this.ticketInfo.bigImg = rst.tempFilePaths[0];
+						this.showCrop = true
+					}
+				});
+			},
+			//确认裁剪
+			confirmCrop(ev) {
+				this.ticketInfo.bigImg = ev.path;
+				this.showCrop = false
+			},
+			//取消裁剪
+			cancelCrop() {
+				this.ticketInfo.bigImg = this.preBigImg
+				this.showCrop = false
+			},
+			//取消
+			cancel() {
+				this.ticketInfo = JSON.parse(JSON.stringify(this.preTicket))
+				this.$refs['drawer'].close()
+			},
+			//保存
+			save() {
+				this.$emit('save', JSON.parse(JSON.stringify(this.ticketInfo)))
+				this.$refs['drawer'].close()
+			},
+		},
+		created() {
+			this.ticketInfo = JSON.parse(JSON.stringify(this.form))
+			this.preTicket = JSON.parse(JSON.stringify(this.ticketInfo))
+		}
+	}
+</script>
+
+<style scoped lang="less">
+	.common-form {
+		.scroll-y {
+			height: 100%;
+
+			.form {
+				padding-right: 15px;
+				padding-top: 20px;
+
+				image {
+					width: 100px !important;
+					margin-right: 10px;
+				}
+
+				.btn-area {
+					height: 80px;
+					display: flex;
+					justify-content: space-between;
+
+					button {
+						width: 100px;
+						height: 36px;
+						line-height: 36px;
+						font-size: 14px;
+					}
+				}
+			}
+		}
+	}
+</style>

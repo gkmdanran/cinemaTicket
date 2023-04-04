@@ -26,10 +26,10 @@
 <style lang="less" scoped>
 	.picture {
 		.wrap {
-			width: 300px;
+			width: 100%;
 			display: flex;
 			margin: 20px auto;
-
+			justify-content: center;
 			image {
 				width: 300px !important;
 			}

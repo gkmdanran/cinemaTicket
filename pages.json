@@ -1,36 +1,33 @@
 {
-	"pages": [{
-		"path": "pages/index/index",
-		"style": {
-			"navigationBarTitleText": "票根制作"
-		}
-	}    ,{
-            "path" : "pages/ticket/ticket",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "票根制作",
-                "enablePullDownRefresh": false,
-				"backgroundColor": "#000"
+    "pages": [
+        {
+            "path": "pages/index/index",
+            "style": {
+                "navigationBarTitleText": "票根制作"
             }
-            
-        }
-        ,{
-            "path" : "pages/picture/picture",
-            "style" :                                                                                    
-            {
+        },
+        {
+            "path": "pages/ticket/ticket",
+            "style": {
+                "navigationBarTitleText": "票根制作",
+                "enablePullDownRefresh": false
+            }
+        },
+        {
+            "path": "pages/picture/picture",
+            "style": {
                 "navigationBarTitleText": "票根",
                 "enablePullDownRefresh": false
             }
-            
         }
     ],
-	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8",
-		"app-plus": {
-			"background": "#efeff4"
-		}
-	}
+    "globalStyle": {
+        "navigationBarTextStyle": "black",
+        "navigationBarTitleText": "uni-app",
+        "navigationBarBackgroundColor": "#F8F8F8",
+        "backgroundColor": "#F8F8F8",
+        "app-plus": {
+            "background": "#efeff4"
+        }
+    }
 }

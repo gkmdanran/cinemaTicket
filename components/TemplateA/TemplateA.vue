@@ -2,7 +2,7 @@
 	<view class="TemplateA">
 		<canvas class="canvas" canvas-id="TemplateA" id="TemplateA"></canvas>
 		<view class="wrap">
-			<image :src="ticketUrl" mode="widthFix" :style="{width:'200px'}"></image>
+			<image :src="ticketUrl" mode="widthFix" :style="{width:'300px'}"></image>
 		</view>
 		<CommonForm ref="form" @save="handleSave" :form="ticketInfo" :formSetting="formSetting">
 		</CommonForm>

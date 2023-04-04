@@ -7,7 +7,7 @@
 				<view class="form">
 					<uni-forms :modelValue="ticketInfo" label-align="right" label-width="90px">
 						<uni-forms-item label="海报:" name="bigImg" v-if="formSetting.bigImg">
-							<image :src="ticketInfo.bigImg" mode="widthFix"></image>
+							<image :src="ticketInfo.bigImg" mode="widthFix" @click="cropImg"></image>
 							<button size="mini" type="primary" @click="selectImg">更换海报</button>
 						</uni-forms-item>
 						<uni-forms-item label="标题:" name="mainTitle" v-if="formSetting.mainTitle">
@@ -93,6 +93,10 @@
 					}
 				});
 			},
+			cropImg(){
+				this.preBigImg = this.ticketInfo.bigImg
+				this.showCrop = true
+			},
 			//确认裁剪
 			confirmCrop(ev) {
 				this.ticketInfo.bigImg = ev.path;
@@ -114,7 +118,7 @@
 				this.$refs['drawer'].close()
 			},
 		},
-		created() {
+		mounted() {
 			this.ticketInfo = JSON.parse(JSON.stringify(this.form))
 			this.preTicket = JSON.parse(JSON.stringify(this.ticketInfo))
 		}

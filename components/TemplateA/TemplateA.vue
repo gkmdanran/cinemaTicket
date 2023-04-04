@@ -5,53 +5,59 @@
 			<image :src="ticketUrl" mode="widthFix"></image>
 		</view>
 		<uni-drawer ref="drawer" mode="right" :width="320" :maskClick="false">
-			<view class="form">
-				<uni-forms :modelValue="ticketInfo" label-align="right" label-width="90px">
-					<uni-forms-item label="海报:" name="bigImg">
-						<image :src="ticketInfo.bigImg" mode="widthFix"></image>
-						<button size="mini" type="primary" @click="changePic">更换海报</button>
-					</uni-forms-item>
-					<uni-forms-item label="标题:" name="mainTitle">
-						<uni-easyinput type="text" v-model="ticketInfo.mainTitle" placeholder="例:流浪地球2"
-							maxlength="99" />
-					</uni-forms-item>
-					<uni-forms-item label="副标题:" name="subTitle">
-						<uni-easyinput type="text" v-model="ticketInfo.subTitle" placeholder="例:The Wandering Earth II"
-							maxlength="99" />
-					</uni-forms-item>
-					<uni-forms-item label="时长(分钟):" name="duration">
-						<uni-easyinput type="number" v-model="ticketInfo.duration" maxlength="8" />
-					</uni-forms-item>
-					<uni-forms-item label="上映日期:" name="releaseTime">
-						<uni-datetime-picker type="date" :clear-icon="false" v-model="ticketInfo.releaseTime" />
-					</uni-forms-item>
-					<uni-forms-item label="影院:" name="cinema">
-						<uni-easyinput type="text" v-model="ticketInfo.cinema" placeholder="例:幸福蓝海国际影城"
-							maxlength="99" />
-					</uni-forms-item>
-					<uni-forms-item label="影厅:" name="hell">
-						<uni-easyinput type="text" v-model="ticketInfo.hell" placeholder="例:5号全景声厅" maxlength="18" />
-					</uni-forms-item>
-					<uni-forms-item label="座位:" name="seat">
-						<uni-easyinput type="text" v-model="ticketInfo.seat" placeholder="例:5拍14座" maxlength="16" />
-					</uni-forms-item>
-					<uni-forms-item label="票价(￥):" name="price">
-						<uni-easyinput type="digit" v-model="ticketInfo.price" maxlength="8" />
-					</uni-forms-item>
-					<uni-forms-item label="放映时间:" name="dateTime">
-						<uni-datetime-picker type="datetime" :clear-icon="false" v-model="ticketInfo.dateTime"
-							hide-second />
-					</uni-forms-item>
-				</uni-forms>
-				<view class="btn-area">
-					<button type="primary" @click="cancel">取 消</button>
-					<button @click="save">预 览</button>
+			<scroll-view scroll-y="true" class="scroll-y">
+				<view class="form">
+					<uni-forms :modelValue="ticketInfo" label-align="right" label-width="90px">
+						<uni-forms-item label="海报:" name="bigImg">
+							<image :src="ticketInfo.bigImg" mode="widthFix"></image>
+							<button size="mini" type="primary" @click="selectImg">更换海报</button>
+						</uni-forms-item>
+						<uni-forms-item label="标题:" name="mainTitle">
+							<uni-easyinput type="text" v-model="ticketInfo.mainTitle" placeholder="例:流浪地球2"
+								maxlength="99" />
+						</uni-forms-item>
+						<uni-forms-item label="副标题:" name="subTitle">
+							<uni-easyinput type="text" v-model="ticketInfo.subTitle"
+								placeholder="例:The Wandering Earth II" maxlength="99" />
+						</uni-forms-item>
+						<uni-forms-item label="时长(分钟):" name="duration">
+							<uni-easyinput type="number" v-model="ticketInfo.duration" maxlength="8" />
+						</uni-forms-item>
+						<uni-forms-item label="分类:" name="kinds">
+							<uni-easyinput type="text" v-model="ticketInfo.kinds" placeholder="例:科幻/冒险/灾难"
+								maxlength="99" />
+						</uni-forms-item>
+						<uni-forms-item label="上映日期:" name="releaseTime">
+							<uni-datetime-picker type="date" :clear-icon="false" v-model="ticketInfo.releaseTime" />
+						</uni-forms-item>
+						<uni-forms-item label="影院:" name="cinema">
+							<uni-easyinput type="text" v-model="ticketInfo.cinema" placeholder="例:幸福蓝海国际影城"
+								maxlength="99" />
+						</uni-forms-item>
+						<uni-forms-item label="影厅:" name="hell">
+							<uni-easyinput type="text" v-model="ticketInfo.hell" placeholder="例:5号全景声厅"
+								maxlength="18" />
+						</uni-forms-item>
+						<uni-forms-item label="座位:" name="seat">
+							<uni-easyinput type="text" v-model="ticketInfo.seat" placeholder="例:5拍14座" maxlength="16" />
+						</uni-forms-item>
+						<uni-forms-item label="票价(￥):" name="price">
+							<uni-easyinput type="digit" v-model="ticketInfo.price" maxlength="8" />
+						</uni-forms-item>
+						<uni-forms-item label="放映时间:" name="dateTime">
+							<uni-datetime-picker type="datetime" :clear-icon="false" v-model="ticketInfo.dateTime"
+								hide-second />
+						</uni-forms-item>
+					</uni-forms>
+					<view class="btn-area">
+						<button type="primary" @click="cancel">取 消</button>
+						<button @click="save">预 览</button>
+					</view>
 				</view>
-			</view>
+			</scroll-view>
 		</uni-drawer>
-		<view v-if="showCropper" class="setimg">
-			<qf-image-cropper :width="300" :height="420" :src="ticketInfo.bigImg" @crop="handleCrop" />
-		</view>
+		<ksp-cropper v-if="showCrop" mode="ratio" :width="300" :height="420" :maxWidth="1024" :maxHeight="1024"
+			:url="ticketInfo.bigImg" @cancel="oncancel" @ok="onok" />
 	</view>
 </template>
 
@@ -60,15 +66,16 @@
 		name: "TemplateA",
 		data() {
 			return {
-				showCropper: false,
+				showCrop: false,
+				preBigImg: '',
 				ticketUrl: '',
 				preTicket: {},
 				ticketInfo: {
-					bigImg: '/static/lldq.jpg',
+					bigImg: '../../static/lldq.jpg',
 					mainTitle: '流浪地球2',
 					subTitle: 'The Wandering Earth II',
 					duration: 147,
-					kinds: ['科幻', '冒险', '灾难'],
+					kinds: '科幻/冒险/灾难',
 					releaseTime: '2023-01-22',
 					cinema: '幸福蓝海国际影城',
 					hell: '5号全景声厅',
@@ -79,14 +86,27 @@
 			}
 		},
 		methods: {
-			changePic() {
-				this.showCropper = true
+			selectImg(rsp) {
+				uni.chooseImage({
+					count: 1,
+					success: (rst) => {
+						this.preBigImg = this.ticketInfo.bigImg
+						this.ticketInfo.bigImg = rst.tempFilePaths[0];
+						this.showCrop = true
+					}
+				});
 			},
-			handleCrop({
-				tempFilePath
-			}) {
-				this.ticketInfo.bigImg = tempFilePath
-				this.showCropper = false
+			onok(ev) {
+				this.ticketInfo.bigImg = ev.path;
+				this.showCrop = false
+			},
+			oncancel() {
+				this.ticketInfo.bigImg = this.preBigImg
+				this.showCrop = false
+			},
+			showDrawer() {
+				this.preTicket = JSON.parse(JSON.stringify(this.ticketInfo))
+				this.$refs['drawer'].open()
 			},
 			cancel() {
 				this.ticketInfo = JSON.parse(JSON.stringify(this.preTicket))
@@ -159,7 +179,7 @@
 				const detailH = 20
 				const detailArr = [
 					`${this.ticketInfo.duration} 分钟`,
-					this.ticketInfo.kinds.join('/'),
+					this.ticketInfo.kinds,
 					`${this.ticketInfo.releaseTime} 上映`
 				]
 				detailArr.forEach((item, index) => {
@@ -278,10 +298,6 @@
 					this.createImage()
 				})
 			},
-			showDrawer() {
-				this.preTicket = JSON.parse(JSON.stringify(this.ticketInfo))
-				this.$refs['drawer'].open()
-			},
 		},
 		mounted() {
 			this.drawTemplate()
@@ -291,13 +307,6 @@
 <style lang="less" scoped>
 	.TemplateA {
 		position: relative;
-
-		.setimg {
-			position: absolute;
-			z-index: 999999;
-			width: 100vw;
-			height: 100vh;
-		}
 
 		.canvas {
 			top: -850px;
@@ -318,27 +327,29 @@
 			}
 		}
 
-		.form {
-			overflow: auto;
-			height: 100vh;
-			padding: 30px 15px 0 0;
+		.scroll-y {
+			height: 100%;
 
-			image {
-				margin: 0 auto;
-				width: 100px !important;
-				margin-right: 10px;
-			}
+			.form {
+				padding-right: 15px;
+				padding-top: 20px;
 
-			.btn-area {
-				height: 100px;
-				display: flex;
-				justify-content: space-between;
+				image {
+					width: 100px !important;
+					margin-right: 10px;
+				}
 
-				button {
-					width: 100px;
-					height: 36px;
-					line-height: 36px;
-					font-size: 14px;
+				.btn-area {
+					height: 80px;
+					display: flex;
+					justify-content: space-between;
+
+					button {
+						width: 100px;
+						height: 36px;
+						line-height: 36px;
+						font-size: 14px;
+					}
 				}
 			}
 		}

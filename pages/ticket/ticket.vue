@@ -52,7 +52,7 @@
 		.btn-area {
 			display: flex;
 			justify-content: space-between;
-			padding: 60rpx 0;
+			padding: 20px 0;
 
 			button {
 				width: 100px;

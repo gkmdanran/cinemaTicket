@@ -767,7 +767,7 @@ function populateParameters(result) {
   // wx.getAccountInfoSync
 
   var parameters = {
-    appId: "",
+    appId: "__UNI__0F90D21",
     appName: "cinemaTicket",
     appVersion: "1.0.0",
     appVersionCode: "100",
@@ -866,7 +866,7 @@ var getAppBaseInfo = {
     var _hostName = getHostName(result);
     var hostLanguage = language.replace('_', '-');
     result = sortObject(Object.assign(result, {
-      appId: "",
+      appId: "__UNI__0F90D21",
       appName: "cinemaTicket",
       appVersion: "1.0.0",
       appVersionCode: "100",
@@ -9605,14 +9605,7 @@ function normalizeComponent (
 /* 73 */,
 /* 74 */,
 /* 75 */,
-/* 76 */,
-/* 77 */,
-/* 78 */,
-/* 79 */,
-/* 80 */,
-/* 81 */,
-/* 82 */,
-/* 83 */
+/* 76 */
 /*!*******************************************************************************************************!*\
   !*** C:/Users/kaiming.gu_sx/Desktop/cinemaTicket/uni_modules/uni-popup/components/uni-popup/popup.js ***!
   \*******************************************************************************************************/
@@ -9653,7 +9646,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 84 */
+/* 77 */
 /*!************************************************************************************************************!*\
   !*** C:/Users/kaiming.gu_sx/Desktop/cinemaTicket/uni_modules/uni-popup/components/uni-popup/i18n/index.js ***!
   \************************************************************************************************************/
@@ -9668,9 +9661,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 85));
-var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 86));
-var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 87));
+var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 78));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 79));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 80));
 var _default = {
   en: _en.default,
   'zh-Hans': _zhHans.default,
@@ -9679,7 +9672,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 85 */
+/* 78 */
 /*!***********************************************************************************************************!*\
   !*** C:/Users/kaiming.gu_sx/Desktop/cinemaTicket/uni_modules/uni-popup/components/uni-popup/i18n/en.json ***!
   \***********************************************************************************************************/
@@ -9689,7 +9682,7 @@ exports.default = _default;
 module.exports = JSON.parse("{\"uni-popup.cancel\":\"cancel\",\"uni-popup.ok\":\"ok\",\"uni-popup.placeholder\":\"pleace enter\",\"uni-popup.title\":\"Hint\",\"uni-popup.shareTitle\":\"Share to\"}");
 
 /***/ }),
-/* 86 */
+/* 79 */
 /*!****************************************************************************************************************!*\
   !*** C:/Users/kaiming.gu_sx/Desktop/cinemaTicket/uni_modules/uni-popup/components/uni-popup/i18n/zh-Hans.json ***!
   \****************************************************************************************************************/
@@ -9699,7 +9692,7 @@ module.exports = JSON.parse("{\"uni-popup.cancel\":\"cancel\",\"uni-popup.ok\":\
 module.exports = JSON.parse("{\"uni-popup.cancel\":\"取消\",\"uni-popup.ok\":\"确定\",\"uni-popup.placeholder\":\"请输入\",\"uni-popup.title\":\"提示\",\"uni-popup.shareTitle\":\"分享到\"}");
 
 /***/ }),
-/* 87 */
+/* 80 */
 /*!****************************************************************************************************************!*\
   !*** C:/Users/kaiming.gu_sx/Desktop/cinemaTicket/uni_modules/uni-popup/components/uni-popup/i18n/zh-Hant.json ***!
   \****************************************************************************************************************/
@@ -9709,6 +9702,13 @@ module.exports = JSON.parse("{\"uni-popup.cancel\":\"取消\",\"uni-popup.ok\":\
 module.exports = JSON.parse("{\"uni-popup.cancel\":\"取消\",\"uni-popup.ok\":\"確定\",\"uni-popup.placeholder\":\"請輸入\",\"uni-popup.title\":\"提示\",\"uni-popup.shareTitle\":\"分享到\"}");
 
 /***/ }),
+/* 81 */,
+/* 82 */,
+/* 83 */,
+/* 84 */,
+/* 85 */,
+/* 86 */,
+/* 87 */,
 /* 88 */,
 /* 89 */,
 /* 90 */,
@@ -9716,14 +9716,7 @@ module.exports = JSON.parse("{\"uni-popup.cancel\":\"取消\",\"uni-popup.ok\":\
 /* 92 */,
 /* 93 */,
 /* 94 */,
-/* 95 */,
-/* 96 */,
-/* 97 */,
-/* 98 */,
-/* 99 */,
-/* 100 */,
-/* 101 */,
-/* 102 */
+/* 95 */
 /*!************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/@babel/runtime/regenerator/index.js ***!
   \************************************************************************************************/
@@ -9732,11 +9725,11 @@ module.exports = JSON.parse("{\"uni-popup.cancel\":\"取消\",\"uni-popup.ok\":\
 
 // TODO(Babel 8): Remove this file.
 
-var runtime = __webpack_require__(/*! @babel/runtime/helpers/regeneratorRuntime */ 103)();
+var runtime = __webpack_require__(/*! @babel/runtime/helpers/regeneratorRuntime */ 96)();
 module.exports = runtime;
 
 /***/ }),
-/* 103 */
+/* 96 */
 /*!*******************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/regeneratorRuntime.js ***!
   \*******************************************************************/
@@ -10057,7 +10050,7 @@ function _regeneratorRuntime() {
 module.exports = _regeneratorRuntime, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 104 */
+/* 97 */
 /*!*****************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/asyncToGenerator.js ***!
   \*****************************************************************/
@@ -10097,7 +10090,7 @@ function _asyncToGenerator(fn) {
 module.exports = _asyncToGenerator, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 105 */
+/* 98 */
 /*!**********************************************************************************************************!*\
   !*** C:/Users/kaiming.gu_sx/Desktop/cinemaTicket/uni_modules/uni-forms/components/uni-forms/validate.js ***!
   \**********************************************************************************************************/
@@ -10112,11 +10105,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 102));
-var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ 106));
-var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ 107));
-var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ 109));
-var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 104));
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 95));
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ 99));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ 100));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ 102));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 97));
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
 var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
@@ -10788,7 +10781,7 @@ var _default = SchemaValidator;
 exports.default = _default;
 
 /***/ }),
-/* 106 */
+/* 99 */
 /*!*********************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/inherits.js ***!
   \*********************************************************/
@@ -10815,7 +10808,7 @@ function _inherits(subClass, superClass) {
 module.exports = _inherits, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 107 */
+/* 100 */
 /*!**************************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js ***!
   \**************************************************************************/
@@ -10823,7 +10816,7 @@ module.exports = _inherits, module.exports.__esModule = true, module.exports["de
 /***/ (function(module, exports, __webpack_require__) {
 
 var _typeof = __webpack_require__(/*! ./typeof.js */ 13)["default"];
-var assertThisInitialized = __webpack_require__(/*! ./assertThisInitialized.js */ 108);
+var assertThisInitialized = __webpack_require__(/*! ./assertThisInitialized.js */ 101);
 function _possibleConstructorReturn(self, call) {
   if (call && (_typeof(call) === "object" || typeof call === "function")) {
     return call;
@@ -10835,7 +10828,7 @@ function _possibleConstructorReturn(self, call) {
 module.exports = _possibleConstructorReturn, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 108 */
+/* 101 */
 /*!**********************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/assertThisInitialized.js ***!
   \**********************************************************************/
@@ -10851,7 +10844,7 @@ function _assertThisInitialized(self) {
 module.exports = _assertThisInitialized, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 109 */
+/* 102 */
 /*!***************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/getPrototypeOf.js ***!
   \***************************************************************/
@@ -10867,7 +10860,7 @@ function _getPrototypeOf(o) {
 module.exports = _getPrototypeOf, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 110 */
+/* 103 */
 /*!*******************************************************************************************************!*\
   !*** C:/Users/kaiming.gu_sx/Desktop/cinemaTicket/uni_modules/uni-forms/components/uni-forms/utils.js ***!
   \*******************************************************************************************************/
@@ -11202,6 +11195,13 @@ var isEqual = function isEqual(a, b) {
 exports.isEqual = isEqual;
 
 /***/ }),
+/* 104 */,
+/* 105 */,
+/* 106 */,
+/* 107 */,
+/* 108 */,
+/* 109 */,
+/* 110 */,
 /* 111 */,
 /* 112 */,
 /* 113 */,
@@ -11216,14 +11216,7 @@ exports.isEqual = isEqual;
 /* 122 */,
 /* 123 */,
 /* 124 */,
-/* 125 */,
-/* 126 */,
-/* 127 */,
-/* 128 */,
-/* 129 */,
-/* 130 */,
-/* 131 */,
-/* 132 */
+/* 125 */
 /*!********************************************************************************************************************************!*\
   !*** C:/Users/kaiming.gu_sx/Desktop/cinemaTicket/uni_modules/uni-datetime-picker/components/uni-datetime-picker/i18n/index.js ***!
   \********************************************************************************************************************************/
@@ -11238,9 +11231,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 133));
-var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 134));
-var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 135));
+var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 126));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 127));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 128));
 var _default = {
   en: _en.default,
   'zh-Hans': _zhHans.default,
@@ -11249,7 +11242,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 133 */
+/* 126 */
 /*!*******************************************************************************************************************************!*\
   !*** C:/Users/kaiming.gu_sx/Desktop/cinemaTicket/uni_modules/uni-datetime-picker/components/uni-datetime-picker/i18n/en.json ***!
   \*******************************************************************************************************************************/
@@ -11259,7 +11252,7 @@ exports.default = _default;
 module.exports = JSON.parse("{\"uni-datetime-picker.selectDate\":\"select date\",\"uni-datetime-picker.selectTime\":\"select time\",\"uni-datetime-picker.selectDateTime\":\"select datetime\",\"uni-datetime-picker.startDate\":\"start date\",\"uni-datetime-picker.endDate\":\"end date\",\"uni-datetime-picker.startTime\":\"start time\",\"uni-datetime-picker.endTime\":\"end time\",\"uni-datetime-picker.ok\":\"ok\",\"uni-datetime-picker.clear\":\"clear\",\"uni-datetime-picker.cancel\":\"cancel\",\"uni-datetime-picker.year\":\"-\",\"uni-datetime-picker.month\":\"\",\"uni-calender.MON\":\"MON\",\"uni-calender.TUE\":\"TUE\",\"uni-calender.WED\":\"WED\",\"uni-calender.THU\":\"THU\",\"uni-calender.FRI\":\"FRI\",\"uni-calender.SAT\":\"SAT\",\"uni-calender.SUN\":\"SUN\",\"uni-calender.confirm\":\"confirm\"}");
 
 /***/ }),
-/* 134 */
+/* 127 */
 /*!************************************************************************************************************************************!*\
   !*** C:/Users/kaiming.gu_sx/Desktop/cinemaTicket/uni_modules/uni-datetime-picker/components/uni-datetime-picker/i18n/zh-Hans.json ***!
   \************************************************************************************************************************************/
@@ -11269,7 +11262,7 @@ module.exports = JSON.parse("{\"uni-datetime-picker.selectDate\":\"select date\"
 module.exports = JSON.parse("{\"uni-datetime-picker.selectDate\":\"选择日期\",\"uni-datetime-picker.selectTime\":\"选择时间\",\"uni-datetime-picker.selectDateTime\":\"选择日期时间\",\"uni-datetime-picker.startDate\":\"开始日期\",\"uni-datetime-picker.endDate\":\"结束日期\",\"uni-datetime-picker.startTime\":\"开始时间\",\"uni-datetime-picker.endTime\":\"结束时间\",\"uni-datetime-picker.ok\":\"确定\",\"uni-datetime-picker.clear\":\"清除\",\"uni-datetime-picker.cancel\":\"取消\",\"uni-datetime-picker.year\":\"年\",\"uni-datetime-picker.month\":\"月\",\"uni-calender.SUN\":\"日\",\"uni-calender.MON\":\"一\",\"uni-calender.TUE\":\"二\",\"uni-calender.WED\":\"三\",\"uni-calender.THU\":\"四\",\"uni-calender.FRI\":\"五\",\"uni-calender.SAT\":\"六\",\"uni-calender.confirm\":\"确认\"}");
 
 /***/ }),
-/* 135 */
+/* 128 */
 /*!************************************************************************************************************************************!*\
   !*** C:/Users/kaiming.gu_sx/Desktop/cinemaTicket/uni_modules/uni-datetime-picker/components/uni-datetime-picker/i18n/zh-Hant.json ***!
   \************************************************************************************************************************************/
@@ -11279,6 +11272,13 @@ module.exports = JSON.parse("{\"uni-datetime-picker.selectDate\":\"选择日期\
 module.exports = JSON.parse("{\"uni-datetime-picker.selectDate\":\"選擇日期\",\"uni-datetime-picker.selectTime\":\"選擇時間\",\"uni-datetime-picker.selectDateTime\":\"選擇日期時間\",\"uni-datetime-picker.startDate\":\"開始日期\",\"uni-datetime-picker.endDate\":\"結束日期\",\"uni-datetime-picker.startTime\":\"開始时间\",\"uni-datetime-picker.endTime\":\"結束时间\",\"uni-datetime-picker.ok\":\"確定\",\"uni-datetime-picker.clear\":\"清除\",\"uni-datetime-picker.cancel\":\"取消\",\"uni-datetime-picker.year\":\"年\",\"uni-datetime-picker.month\":\"月\",\"uni-calender.SUN\":\"日\",\"uni-calender.MON\":\"一\",\"uni-calender.TUE\":\"二\",\"uni-calender.WED\":\"三\",\"uni-calender.THU\":\"四\",\"uni-calender.FRI\":\"五\",\"uni-calender.SAT\":\"六\",\"uni-calender.confirm\":\"確認\"}");
 
 /***/ }),
+/* 129 */,
+/* 130 */,
+/* 131 */,
+/* 132 */,
+/* 133 */,
+/* 134 */,
+/* 135 */,
 /* 136 */,
 /* 137 */,
 /* 138 */,

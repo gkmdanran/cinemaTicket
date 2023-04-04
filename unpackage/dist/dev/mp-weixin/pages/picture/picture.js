@@ -150,21 +150,15 @@ exports.default = void 0;
 //
 //
 //
-//
 var _default = {
   data: function data() {
     return {
-      ticketUrl: '2'
+      ticketUrl: ''
     };
   },
-  methods: {
-    handleCrop: function handleCrop(e) {
-      console.log(e);
-    }
-  },
+  methods: {},
   onLoad: function onLoad() {
     this.ticketUrl = uni.getStorageSync('ticket_url') || '';
-    console.log(this.ticketUrl);
   }
 };
 exports.default = _default;

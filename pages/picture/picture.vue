@@ -3,7 +3,6 @@
 		<div class="wrap" v-if="ticketUrl">
 			<image :src="ticketUrl" mode="widthFix" show-menu-by-longpress></image>
 		</div>
-		
 		<div class="tips">长按票根，保存图片至本地相册</div>
 	</view>
 </template>
@@ -12,17 +11,14 @@
 	export default {
 		data() {
 			return {
-				ticketUrl: '2'
+				ticketUrl: ''
 			}
 		},
 		methods: {
-			handleCrop(e) {
-				console.log(e)
-			}
+
 		},
 		onLoad() {
 			this.ticketUrl = uni.getStorageSync('ticket_url') || '';
-			console.log(this.ticketUrl)
 		}
 	}
 </script>
@@ -40,11 +36,9 @@
 		}
 
 		.tips {
-			padding-bottom: 100rpx;
+			padding-bottom: 40px;
 			text-align: center;
 			color: #f6cb75;
 		}
-
-
 	}
 </style>

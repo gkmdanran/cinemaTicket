@@ -1,12 +1,6 @@
 .TemplateA.data-v-a6310958 {
   position: relative;
 }
-.TemplateA .setimg.data-v-a6310958 {
-  position: absolute;
-  z-index: 999999;
-  width: 100vw;
-  height: 100vh;
-}
 .TemplateA .canvas.data-v-a6310958 {
   top: -850px;
   width: 300px;
@@ -23,22 +17,23 @@
 .TemplateA .wrap image.data-v-a6310958 {
   width: 300px !important;
 }
-.TemplateA .form.data-v-a6310958 {
-  overflow: auto;
-  height: 100vh;
-  padding: 30px 15px 0 0;
+.TemplateA .scroll-y.data-v-a6310958 {
+  height: 100%;
 }
-.TemplateA .form image.data-v-a6310958 {
-  margin: 0 auto;
+.TemplateA .scroll-y .form.data-v-a6310958 {
+  padding-right: 15px;
+  padding-top: 20px;
+}
+.TemplateA .scroll-y .form image.data-v-a6310958 {
   width: 100px !important;
   margin-right: 10px;
 }
-.TemplateA .form .btn-area.data-v-a6310958 {
-  height: 100px;
+.TemplateA .scroll-y .form .btn-area.data-v-a6310958 {
+  height: 80px;
   display: flex;
   justify-content: space-between;
 }
-.TemplateA .form .btn-area button.data-v-a6310958 {
+.TemplateA .scroll-y .form .btn-area button.data-v-a6310958 {
   width: 100px;
   height: 36px;
   line-height: 36px;

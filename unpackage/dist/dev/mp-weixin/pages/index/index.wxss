@@ -1,7 +1,4 @@
-
-.container {
-	padding: 20px;
-	font-size: 14px;
-	line-height: 24px;
+.index-contaioner.data-v-57280228 {
+  padding: 10px;
 }
 

@@ -147,7 +147,7 @@ exports.default = void 0;
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
 var _util = _interopRequireDefault(__webpack_require__(/*! ./util.js */ 157));
 var _uniI18n = __webpack_require__(/*! @dcloudio/uni-i18n */ 22);
-var _index = _interopRequireDefault(__webpack_require__(/*! ./i18n/index.js */ 132));
+var _index = _interopRequireDefault(__webpack_require__(/*! ./i18n/index.js */ 125));
 //
 //
 //

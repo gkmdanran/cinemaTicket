@@ -6,7 +6,7 @@
 			<button @click="editTicket">编辑票根</button>
 		</view>
 		<uni-popup ref="alertDialog" type="dialog">
-			<uni-popup-dialog type="info" cancelText="取消" confirmText="同意" title="告知" content="此小程序仅供娱乐,不可商用!"
+			<uni-popup-dialog type="info" cancelText="取消" confirmText="同意" title="告知" content="此小程序仅供娱乐,不可商用!不可用作非法途径!"
 				@confirm="dialogConfirm"></uni-popup-dialog>
 		</uni-popup>
 	</view>

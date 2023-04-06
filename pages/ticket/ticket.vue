@@ -3,8 +3,10 @@
 		<TemplateA ref="TemplateA" :ticketInfo="ticketInfo" @save="saveTemplate"></TemplateA>
 		<view class="btn-area">
 			<button type="primary" @click="createTicket">生成票根</button>
+			<button @click="refresh">刷 新</button>
 			<button @click="editTicket">编辑票根</button>
 		</view>
+		<view class="tips">票根如果出现排版错位，请点击刷新按钮</view>
 		<uni-popup ref="alertDialog" type="dialog">
 			<uni-popup-dialog type="info" cancelText="取消" confirmText="同意" title="告知" content="此小程序仅供娱乐,不可商用!不可用作非法途径!"
 				@confirm="dialogConfirm"></uni-popup-dialog>
@@ -13,7 +15,7 @@
 </template>
 
 <script>
-	const img=require('../../static/lldq.jpg')
+	const img = require('../../static/lldq.jpg')
 	export default {
 		data() {
 			return {
@@ -22,6 +24,10 @@
 			}
 		},
 		methods: {
+			//刷新
+			refresh() {
+				this.$refs[`${this.currentTemplate}`].drawTemplate()
+			},
 			//编辑票根
 			editTicket() {
 				this.$refs[`${this.currentTemplate}`].showDrawer()
@@ -76,7 +82,7 @@
 		.btn-area {
 			display: flex;
 			justify-content: space-between;
-			padding: 20px 0;
+			padding-top: 20px;
 
 			button {
 				width: 100px;
@@ -84,6 +90,12 @@
 				line-height: 36px;
 				font-size: 14px;
 			}
+		}
+		.tips{
+			padding: 15px 0;
+			text-align: center;
+			font-size: 12px;
+			color: #333;
 		}
 	}
 </style>

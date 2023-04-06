@@ -53,8 +53,8 @@
 						</uni-forms-item>
 					</uni-forms>
 					<view class="btn-area">
-						<button type="primary" @click="cancel">取 消</button>
-						<button @click="save">预 览</button>
+						<button @click="cancel">取 消</button>
+						<button type="primary" @click="save">预 览</button>
 					</view>
 				</view>
 			</scroll-view>

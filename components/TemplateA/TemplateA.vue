@@ -80,6 +80,7 @@
 				const rightOffset = width - leftOffset
 				const ctx = uni.createCanvasContext('TemplateA', this);
 				ctx.setTextAlign('left')
+				ctx.font = 'normal normal 12px Arial'
 				//票根
 				ctx.setFillStyle('#fff')
 				ctx.fillRect(0, 0, width, 850);
@@ -87,13 +88,7 @@
 				ctx.setFillStyle('#f1f1f1')
 				ctx.fillRect(0, 0, width, 420);
 				ctx.drawImage(this.ticketInfo.bigImg, 0, 0, 300, 420)
-				//主标题
-				ctx.font = 'normal bold 16px Arial'
-				ctx.setFontSize(16)
-				ctx.setFillStyle('#000000')
-				ctx.fillText(this.ticketInfo.mainTitle, leftOffset, 450);
 				//副标题
-				ctx.font = 'normal lighter 12px Arial'
 				ctx.setFontSize(12)
 				ctx.setFillStyle('#191919')
 				ctx.fillText(this.ticketInfo.subTitle, leftOffset, 470);
@@ -206,9 +201,13 @@
 				ctx.setLineWidth(3)
 				ctx.setStrokeStyle('#000000')
 				ctx.stroke();
-				//打孔点
+				//左打孔点
 				ctx.beginPath();
 				ctx.arc(0, 750, 8, 0, 360, false);
+				ctx.setFillStyle('#000000')
+				ctx.fill();
+				//右打孔点
+				ctx.beginPath();
 				ctx.arc(width, 750, 8, 0, 360, false);
 				ctx.setFillStyle('#000000')
 				ctx.fill();
@@ -219,14 +218,20 @@
 				ctx.lineTo(width, 850);
 				ctx.setStrokeStyle('#7d7e7b')
 				ctx.stroke();
-				//感谢
+				//主标题
 				ctx.font = 'normal bold 16px Arial'
 				ctx.setFontSize(16)
+				ctx.setFillStyle('#000000')
+				ctx.fillText(this.ticketInfo.mainTitle, leftOffset, 450);
+				//感谢
+				ctx.font = 'normal bold 16px Arial'
 				ctx.setTextAlign('center')
+				ctx.setFontSize(16)
 				ctx.setFillStyle('#000000')
 				ctx.fillText('THANK YOU FOR WATCHING', 150, 780);
 				//留念日期
-				ctx.font = 'normal lighter 14px Arial'
+				ctx.font = 'normal bold 14px Arial'
+				ctx.setTextAlign('center')
 				ctx.setFontSize(14)
 				ctx.setFillStyle('#000000')
 				ctx.fillText(`${this.ticketInfo.dateTime.split(' ')[0].split('-').join('/')} 观影留念`, 150, 810);

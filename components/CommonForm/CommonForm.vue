@@ -42,7 +42,7 @@
 								maxlength="18" />
 						</uni-forms-item>
 						<uni-forms-item label="座位:" name="seat" v-if="formSetting.seat">
-							<uni-easyinput type="text" v-model="ticketInfo.seat" placeholder="例:5拍14座" maxlength="16" />
+							<uni-easyinput type="text" v-model="ticketInfo.seat" placeholder="例:5排14座" maxlength="16" />
 						</uni-forms-item>
 						<uni-forms-item label="票价(￥):" name="price" v-if="formSetting.price">
 							<uni-easyinput type="digit" v-model="ticketInfo.price" maxlength="8" />

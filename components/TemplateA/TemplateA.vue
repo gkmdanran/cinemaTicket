@@ -82,21 +82,24 @@
 				ctx.setTextAlign('left')
 				ctx.font = 'normal normal 12px Arial'
 				//票根
+				ctx.beginPath();
 				ctx.setFillStyle('#fff')
 				ctx.fillRect(0, 0, width, 850);
 				//海报
+				ctx.beginPath();
 				ctx.setFillStyle('#f1f1f1')
 				ctx.fillRect(0, 0, width, 420);
 				ctx.drawImage(this.ticketInfo.bigImg, 0, 0, 300, 420)
 				//副标题
+				ctx.beginPath();
 				ctx.setFontSize(12)
 				ctx.setFillStyle('#191919')
 				ctx.fillText(this.ticketInfo.subTitle, leftOffset, 470);
 				//虚线
 				const dashYarr = [480, 552]
 				dashYarr.forEach(item => {
-					ctx.setLineDash([8, 6], 4);
 					ctx.beginPath();
+					ctx.setLineDash([8, 6], 4);
 					ctx.moveTo(leftOffset, item);
 					ctx.lineTo(rightOffset, item);
 					ctx.setLineWidth(2)
@@ -111,6 +114,7 @@
 					`${this.ticketInfo.releaseTime} 上映`
 				]
 				detailArr.forEach((item, index) => {
+					ctx.beginPath();
 					ctx.setFontSize(12)
 					ctx.setFillStyle('#4d4d4d')
 					ctx.fillText(item, leftOffset, 500 + index * detailH);
@@ -149,6 +153,7 @@
 					},
 				]
 				InfoLabelArr.forEach(item => {
+					ctx.beginPath();
 					ctx.setFontSize(13)
 					ctx.setFillStyle('#928d89')
 					ctx.fillText(item.txt, item.x, item.y);
@@ -185,6 +190,7 @@
 					},
 				]
 				InfoCntArr.forEach((item, index) => {
+					ctx.beginPath();
 					ctx.setFontSize(12)
 					ctx.setFillStyle('#928d89')
 					if (index === 0) {
@@ -194,8 +200,8 @@
 					}
 				})
 				//虚线
-				ctx.setLineDash([10, 5], 5);
 				ctx.beginPath();
+				ctx.setLineDash([10, 5], 5);
 				ctx.moveTo(0, 750);
 				ctx.lineTo(width, 750);
 				ctx.setLineWidth(3)
@@ -212,30 +218,34 @@
 				ctx.setFillStyle('#000000')
 				ctx.fill();
 				//底部虚线
-				ctx.setLineDash([10, 5], 5);
 				ctx.beginPath();
+				ctx.setLineDash([10, 5], 5);
 				ctx.moveTo(0, 850);
 				ctx.lineTo(width, 850);
 				ctx.setStrokeStyle('#7d7e7b')
 				ctx.stroke();
 				//主标题
+				ctx.beginPath();
 				ctx.font = 'normal bold 16px Arial'
 				ctx.setFontSize(16)
 				ctx.setFillStyle('#000000')
 				ctx.fillText(this.ticketInfo.mainTitle, leftOffset, 450);
 				//感谢
+				ctx.beginPath();
 				ctx.font = 'normal bold 16px Arial'
 				ctx.setTextAlign('center')
 				ctx.setFontSize(16)
 				ctx.setFillStyle('#000000')
 				ctx.fillText('THANK YOU FOR WATCHING', 150, 780);
 				//留念日期
+				ctx.beginPath();
 				ctx.font = 'normal bold 14px Arial'
 				ctx.setTextAlign('center')
 				ctx.setFontSize(14)
 				ctx.setFillStyle('#000000')
 				ctx.fillText(`${this.ticketInfo.dateTime.split(' ')[0].split('-').join('/')} 观影留念`, 150, 810);
 				//已放映
+				ctx.beginPath();
 				ctx.drawImage(this.ticketInfo.finishIcon, 210, 760, 80, 80)
 				ctx.draw(false, () => {
 					this.createImage()

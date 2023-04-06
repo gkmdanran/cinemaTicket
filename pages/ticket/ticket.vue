@@ -13,6 +13,7 @@
 </template>
 
 <script>
+	const img=require('../../static/lldq.jpg')
 	export default {
 		data() {
 			return {
@@ -52,7 +53,7 @@
 				this.ticketInfo = JSON.parse(storageForm)
 			} else {
 				this.ticketInfo = {
-					bigImg: '../../static/lldq.jpg',
+					bigImg: img,
 					mainTitle: '流浪地球2',
 					subTitle: 'The Wandering Earth II',
 					duration: 147,

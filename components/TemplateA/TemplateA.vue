@@ -79,6 +79,7 @@
 				const leftOffset = 10
 				const rightOffset = width - leftOffset
 				const ctx = uni.createCanvasContext('TemplateA', this);
+				ctx.setTextAlign('left')
 				//票根
 				ctx.setFillStyle('#fff')
 				ctx.fillRect(0, 0, width, 850);
@@ -91,8 +92,8 @@
 				ctx.setFontSize(16)
 				ctx.setFillStyle('#000000')
 				ctx.fillText(this.ticketInfo.mainTitle, leftOffset, 450);
-				ctx.font = 'normal normal 12px Arial'
 				//副标题
+				ctx.font = 'normal lighter 12px Arial'
 				ctx.setFontSize(12)
 				ctx.setFillStyle('#191919')
 				ctx.fillText(this.ticketInfo.subTitle, leftOffset, 470);
@@ -220,15 +221,15 @@
 				ctx.stroke();
 				//感谢
 				ctx.font = 'normal bold 16px Arial'
+				ctx.setFontSize(16)
 				ctx.setTextAlign('center')
 				ctx.setFillStyle('#000000')
 				ctx.fillText('THANK YOU FOR WATCHING', 150, 780);
-				ctx.font = 'normal normal 14px Arial'
 				//留念日期
+				ctx.font = 'normal lighter 14px Arial'
 				ctx.setFontSize(14)
 				ctx.setFillStyle('#000000')
 				ctx.fillText(`${this.ticketInfo.dateTime.split(' ')[0].split('-').join('/')} 观影留念`, 150, 810);
-				ctx.setTextAlign('left')
 				//已放映
 				ctx.drawImage(this.ticketInfo.finishIcon, 210, 760, 80, 80)
 				ctx.draw(false, () => {

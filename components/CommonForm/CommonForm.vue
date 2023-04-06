@@ -6,13 +6,18 @@
 			<scroll-view scroll-y="true" class="scroll-y">
 				<view class="form">
 					<uni-forms :modelValue="ticketInfo" label-align="right" label-width="90px">
+						<uni-forms-item label="标题:" name="mainTitle" v-if="formSetting.mainTitle">
+							<uni-easyinput type="text" v-model="ticketInfo.mainTitle" placeholder="例:流浪地球2"
+								@blur="handleBlur" maxlength="99" />
+							<view v-if="recommendFilm" class="recommned" @click="searchFilm">
+								<view>
+									<text>猜你想找</text><text class="name">《{{recommendFilm.name}}》</text>
+								</view>
+							</view>
+						</uni-forms-item>
 						<uni-forms-item label="海报:" name="bigImg" v-if="formSetting.bigImg">
 							<image :src="ticketInfo.bigImg" mode="widthFix" @click="cropImg"></image>
 							<button size="mini" type="primary" @click="selectImg">更换海报</button>
-						</uni-forms-item>
-						<uni-forms-item label="标题:" name="mainTitle" v-if="formSetting.mainTitle">
-							<uni-easyinput type="text" v-model="ticketInfo.mainTitle" placeholder="例:流浪地球2"
-								maxlength="99" />
 						</uni-forms-item>
 						<uni-forms-item label="副标题:" name="subTitle" v-if="formSetting.subTitle">
 							<uni-easyinput type="text" v-model="ticketInfo.subTitle"
@@ -70,6 +75,8 @@
 		},
 		data() {
 			return {
+				recommendFilm: null,
+				hotFilmList: [],
 				showCrop: false,
 				preBigImg: '',
 				preTicket: {},
@@ -77,6 +84,45 @@
 			};
 		},
 		methods: {
+			searchFilm() {
+				uni.request({
+					method: 'GET',
+					url: `https://m.maoyan.com/ajax/detailmovie?movieId=${this.recommendFilm.id}`,
+					success: (res) => {
+						if (!res.data.detailMovie) return
+						if (res.data.detailMovie.img) {
+							uni.downloadFile({
+								url: res.data.detailMovie.img,
+								success: (res) => {
+									this.ticketInfo.bigImg = res.tempFilePath
+								}
+							});
+						}
+						this.ticketInfo.mainTitle = this.recommendFilm.name
+						this.ticketInfo.subTitle = res.data.detailMovie.enm || ''
+						this.ticketInfo.duration = res.data.detailMovie.dur || ''
+						this.ticketInfo.kinds = (res.data.detailMovie.cat || '').split(',').join('/')
+						this.ticketInfo.releaseTime = res.data.detailMovie.rt || ''
+					}
+				});
+			},
+			getHotFilm() {
+				uni.request({
+					method: 'GET',
+					url: 'https://m.maoyan.com/ajax/movieOnInfoList',
+					success: (res) => {
+						this.hotFilmList = res.data.movieList.map(item => ({
+							id: item.id,
+							name: item.nm
+						}))
+					}
+				});
+			},
+			handleBlur() {
+				if (this.ticketInfo.mainTitle) {
+					this.recommendFilm = this.hotFilmList.find(item => item.name.includes(this.ticketInfo.mainTitle))
+				}
+			},
 			//打开抽屉
 			showDrawer() {
 				this.preTicket = JSON.parse(JSON.stringify(this.ticketInfo))
@@ -93,7 +139,7 @@
 					}
 				});
 			},
-			cropImg(){
+			cropImg() {
 				this.preBigImg = this.ticketInfo.bigImg
 				this.showCrop = true
 			},
@@ -110,13 +156,18 @@
 			//取消
 			cancel() {
 				this.ticketInfo = JSON.parse(JSON.stringify(this.preTicket))
+				this.recommendFilm = null
 				this.$refs['drawer'].close()
 			},
 			//保存
 			save() {
 				this.$emit('save', JSON.parse(JSON.stringify(this.ticketInfo)))
+				this.recommendFilm = null
 				this.$refs['drawer'].close()
 			},
+		},
+		created() {
+			this.getHotFilm()
 		},
 		mounted() {
 			this.ticketInfo = JSON.parse(JSON.stringify(this.form))
@@ -134,8 +185,22 @@
 				padding-right: 15px;
 				padding-top: 20px;
 
+				.recommned {
+					display: flex;
+					align-items: center;
+					height: 30px;
+					color: #333;
+					font-size: 12px;
+
+					.name {
+						color: #e04e0f;
+						margin: 0 3px;
+					}
+				}
+
 				image {
 					width: 100px !important;
+					height: 140px !important;
 					margin-right: 10px;
 				}
 

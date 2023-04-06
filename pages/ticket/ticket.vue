@@ -34,6 +34,7 @@
 			},
 			//生成票根
 			createTicket() {
+				this.refresh()
 				this.$refs.alertDialog.open()
 			},
 			//缓存票根

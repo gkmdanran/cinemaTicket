@@ -119,9 +119,9 @@
 				});
 			},
 			handleBlur() {
-				if (this.ticketInfo.mainTitle) {
-					this.recommendFilm = this.hotFilmList.find(item => item.name.includes(this.ticketInfo.mainTitle))
-				}
+				this.recommendFilm = this.hotFilmList.find(item => this.ticketInfo.mainTitle && item.name.includes(this
+					.ticketInfo.mainTitle))
+				this.recommendFilm = this.recommendFilm === undefined ? null : this.recommendFilm
 			},
 			//打开抽屉
 			showDrawer() {

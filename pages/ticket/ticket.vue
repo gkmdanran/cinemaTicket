@@ -34,7 +34,6 @@
 			},
 			//生成票根
 			createTicket() {
-				this.refresh()
 				this.$refs.alertDialog.open()
 			},
 			//缓存票根
@@ -92,7 +91,8 @@
 				font-size: 14px;
 			}
 		}
-		.tips{
+
+		.tips {
 			padding: 15px 0;
 			text-align: center;
 			font-size: 12px;

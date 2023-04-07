@@ -19,6 +19,7 @@
 		},
 		data() {
 			return {
+				loading: false,
 				ticketUrl: '',
 				formSetting: {
 					bigImg: true,
@@ -49,11 +50,15 @@
 				uni.canvasToTempFilePath({
 					quality: 1,
 					canvasId: 'TemplateA',
-					complete: (res) => {
+					success: (res) => {
 						if (res.tempFilePath) {
 							this.ticketUrl = res.tempFilePath.replace(/[\r\n]/g, '');
 						}
 					},
+					complete: () => {
+						this.loading = false
+						uni.hideLoading()
+					}
 				}, this)
 			},
 			//文本换行
@@ -75,6 +80,7 @@
 			},
 			//绘制canvas
 			drawTemplate() {
+				if (this.loading) return
 				const width = 300
 				const leftOffset = 10
 				const rightOffset = width - leftOffset
@@ -247,9 +253,14 @@
 				//已放映
 				ctx.beginPath();
 				ctx.drawImage(this.ticketInfo.finishIcon, 210, 760, 80, 80)
-				ctx.draw(false, () => {
+				ctx.draw()
+				this.loading = true
+				uni.showLoading({
+					title: '生成中...'
+				});
+				setTimeout(() => {
 					this.createImage()
-				})
+				}, 1000)
 			},
 		},
 		mounted() {

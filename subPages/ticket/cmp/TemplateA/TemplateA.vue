@@ -12,9 +12,13 @@
 <script>
 	import {
 		drawText
-	} from '../../util/common.js'
+	} from '../../../../util/common.js'
+	import CommonForm from '../CommonForm/CommonForm.vue'
 	export default {
 		name: "TemplateA",
+		components:{
+			CommonForm
+		},
 		props: {
 			ticketInfo: {
 				type: Object,

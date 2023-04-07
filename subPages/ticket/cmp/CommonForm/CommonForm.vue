@@ -71,8 +71,12 @@
 </template>
 
 <script>
+	import kspCropper from '../ksp-cropper/ksp-cropper.vue'
 	export default {
 		name: "CommonForm",
+		components: {
+			kspCropper
+		},
 		props: {
 			form: {
 				type: Object,

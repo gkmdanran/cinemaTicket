@@ -19,7 +19,14 @@
 
 <script>
 	const img = require('../../static/lldq.jpg')
+	const icon = require('../../static/finish.png')
+	import TemplateA from './cmp/TemplateA/TemplateA.vue'
+	import TemplateB from './cmp/TemplateB/TemplateB.vue'
 	export default {
+		components:{
+			TemplateA,
+			TemplateB
+		},
 		data() {
 			return {
 				ticketInfo: {},
@@ -77,7 +84,7 @@
 					seat: '5排14座',
 					price: '52.00',
 					dateTime: '2023-01-23 14:10',
-					finishIcon: '../../static/finish.png',
+					finishIcon: icon,
 				}
 			}
 		},

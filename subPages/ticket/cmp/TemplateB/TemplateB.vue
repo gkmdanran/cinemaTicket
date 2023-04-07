@@ -14,9 +14,13 @@
 		drawText,
 		fillRoundRect,
 		drawRoundRectPath
-	} from '../../util/common.js'
+	} from '../../../../util/common.js'
+	import CommonForm from '../CommonForm/CommonForm.vue'
 	export default {
 		name: "TemplateB",
+		components:{
+			CommonForm
+		},
 		props: {
 			ticketInfo: {
 				type: Object,

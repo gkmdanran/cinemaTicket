@@ -10,6 +10,9 @@
 </template>
 
 <script>
+	import {
+		drawText
+	} from '../../util/common.js'
 	export default {
 		name: "TemplateA",
 		props: {
@@ -60,23 +63,6 @@
 						uni.hideLoading()
 					}
 				}, this)
-			},
-			//文本换行
-			drawText(ctx, str, leftWidth, initHeight, canvasWidth) {
-				let lineWidth = 0;
-				let lastSubStrIndex = 0; //每次开始截取的字符串的索引
-				for (let i = 0; i < str.length; i++) {
-					lineWidth += ctx.measureText(str[i]).width;
-					if (lineWidth > canvasWidth) {
-						ctx.fillText(str.substring(lastSubStrIndex, i), leftWidth, initHeight); //绘制截取部分
-						initHeight += 16; //22为 文字大小20 + 2
-						lineWidth = 0;
-						lastSubStrIndex = i;
-					}
-					if (i == str.length - 1) { //绘制剩余部分
-						ctx.fillText(str.substring(lastSubStrIndex, i + 1), leftWidth, initHeight);
-					}
-				}
 			},
 			//绘制canvas
 			drawTemplate() {
@@ -202,7 +188,7 @@
 					if (index === 0) {
 						ctx.fillText(item.txt, item.x, item.y)
 					} else {
-						this.drawText(ctx, item.txt, item.x, item.y, infoWidth - 5)
+						drawText(ctx, item.txt, item.x, item.y, infoWidth - 5)
 					}
 				})
 				//虚线
@@ -256,7 +242,8 @@
 				ctx.draw()
 				this.loading = true
 				uni.showLoading({
-					title: '生成中...'
+					title: '生成中...',
+					mask: true
 				});
 				setTimeout(() => {
 					this.createImage()

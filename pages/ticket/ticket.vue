@@ -1,6 +1,7 @@
 <template>
 	<view class="ticket">
-		<TemplateA ref="TemplateA" :ticketInfo="ticketInfo" @save="saveTemplate"></TemplateA>
+		<!-- <TemplateA ref="TemplateA" :ticketInfo="ticketInfo" @save="saveTemplate"></TemplateA> -->
+		<TemplateB ref="TemplateB" :ticketInfo="ticketInfo" @save="saveTemplate"></TemplateB>
 		<view class="btn-area">
 			<button type="primary" @click="createTicket">生成票根</button>
 			<button @click="refresh">刷 新</button>
@@ -20,7 +21,7 @@
 		data() {
 			return {
 				ticketInfo: {},
-				currentTemplate: 'TemplateA'
+				currentTemplate: 'TemplateB'
 			}
 		},
 		methods: {
@@ -66,7 +67,7 @@
 					kinds: '科幻/冒险/灾难',
 					releaseTime: '2023-01-22',
 					cinema: '幸福蓝海国际影城',
-					hall: '5号全景声厅',
+					hall: '5号沙发杜比激光巨幕厅',
 					seat: '5排14座',
 					price: '52.00',
 					dateTime: '2023-01-23 14:10',

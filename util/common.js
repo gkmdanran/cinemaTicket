@@ -15,8 +15,8 @@ export function drawText(ctx, str, leftWidth, initHeight, canvasWidth) {
 		}
 	}
 }
-export function drawRoundRectPath(cxt, width, height, radius, borderColor) {
-	cxt.beginPath(0);
+export function drawRoundRectPath(cxt, width, height, radius, fillColor) {
+	cxt.beginPath();
 	//从右下角顺时针绘制，弧度从0到1/2PI
 	cxt.arc(width - radius, height - radius, radius, 0, Math.PI / 2);
 	//矩形下边线
@@ -33,21 +33,19 @@ export function drawRoundRectPath(cxt, width, height, radius, borderColor) {
 	cxt.arc(width - radius, radius, radius, (Math.PI * 3) / 2, Math.PI * 2);
 	//右边线
 	cxt.lineTo(width, height - radius);
-	cxt.strokeStyle = borderColor || '#fff';
-	cxt.lineWidth = 0;
+	cxt.setStrokeStyle(fillColor);
 	cxt.stroke();
 	cxt.closePath();
 }
-export function fillRoundRect(cxt, x, y, width, height, radius, fillColor, borderColor) {
+export function fillRoundRect(cxt, x, y, width, height, radius, fillColor) {
 	//圆的直径必然要小于矩形的宽高
 	if (2 * radius > width || 2 * radius > height) {
 		return false;
 	}
-
 	cxt.save();
 	cxt.translate(x, y);
 	//绘制圆角矩形的各个边
-	drawRoundRectPath(cxt, width, height, radius, borderColor || fillColor);
+	drawRoundRectPath(cxt, width, height, radius, fillColor);
 	cxt.fillStyle = fillColor || '#fff'; //若是给定了值就用给定的值否则给予默认值
 	cxt.fill();
 	cxt.restore();

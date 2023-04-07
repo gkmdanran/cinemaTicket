@@ -1,7 +1,10 @@
 <template>
 	<view class="index-contaioner">
-		<button type="primary" @click="makeTicket">立即制作</button>
-		<view class="tips" @click="showDialog">如有疑问请联系作者，wx: <text style="color:#e06c75;margin-left: 5px;">gkmdanran</text></view>
+		<view class="banner">
+			<button type="primary" size="mini" v-for="item in templateList" :key="item.id" @click="makeTicket(item.id)">{{item.name}}</button>
+		</view>
+		<view class="tips" @click="showDialog">如有疑问请联系作者，wx: <text
+				style="color:#e06c75;margin-left: 5px;">gkmdanran</text></view>
 		<uni-popup ref="wxDialog" type="dialog">
 			<image src="../../static/me.jpg" mode="widthFix" show-menu-by-longpress></image>
 		</uni-popup>
@@ -12,16 +15,26 @@
 	export default {
 		data() {
 			return {
+				templateList: [{
+					id: 'TemplateB',
+					name: '简约版',
+				}, {
+					id: 'TemplateA',
+					name: '详细版',
+				}, {
+					id: 'TemplateC',
+					name: '自定义',
+				}]
 
 			}
 		},
 		methods: {
-			showDialog(){
+			showDialog() {
 				this.$refs.wxDialog.open()
 			},
-			makeTicket() {
+			makeTicket(id) {
 				uni.navigateTo({
-					url: '/pages/ticket/ticket'
+					url: `/pages/ticket/ticket?id=${id}`
 				});
 			}
 		}
@@ -32,10 +45,13 @@
 	.index-contaioner {
 		padding: 10px;
 
-		button {
-			margin-top: 80px
+		.banner {
+			display: flex;
+			justify-content: space-between;
+			margin- top: 40px;;
 		}
-		.tips{
+
+		.tips {
 			height: 30px;
 			line-height: 30px;
 			margin-top: 80px;
@@ -43,8 +59,9 @@
 			font-size: 12px;
 			color: #ccc1b9;
 		}
-		image{
-			width: 200px!important;
+
+		image {
+			width: 200px !important;
 		}
 	}
 </style>

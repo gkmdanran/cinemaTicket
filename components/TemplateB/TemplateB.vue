@@ -24,20 +24,46 @@
 		},
 		data() {
 			return {
+				colorMap: {
+					'grey': {
+						bg1: '#3d5265',
+						bg2: '#cbcfd3',
+						bg3: '#324252',
+					},
+					'green': {
+						bg1: '#296067',
+						bg2: '#e3e8e8',
+						bg3: '#224d53',
+					},
+					'blue': {
+						bg1: '#1e324a',
+						bg2: '#d3d6db',
+						bg3: '#17283a',
+					},
+					'brown': {
+						bg1: '#67633e',
+						bg2: '#d7d7cf',
+						bg3: '#534f32',
+					},
+					'red': {
+						bg1: '#572723',
+						bg2: '#b39e9d',
+						bg3: '#461e1c',
+					},
+
+				},
 				loading: false,
 				ticketUrl: '',
 				formSetting: {
+					lang: true,
 					bigImg: true,
 					mainTitle: true,
-					subTitle: false,
 					duration: true,
-					kinds: false,
-					releaseTime: false,
 					cinema: true,
 					hall: true,
 					seat: true,
-					price: false,
 					dateTime: true,
+					color: true
 				}
 			}
 		},
@@ -82,21 +108,31 @@
 				cxt.lineTo(width, 144)
 				cxt.arc(width, 152, 8, 1.5 * Math.PI, 0.5 * Math.PI, true)
 				cxt.lineTo(width, height - radius);
-				cxt.strokeStyle = '#fff';
+				cxt.setStrokeStyle('#fff');
 				cxt.stroke();
 				cxt.closePath();
-				cxt.fillStyle = '#fff';
+				cxt.setFillStyle('#fff')
 				cxt.fill();
 				cxt.restore();
 			},
 			getEndTime() {
-				return '18:00'
+				const startTime = this.ticketInfo.dateTime.split(' ')[1]
+				const startH = Number(startTime.split(':')[0])
+				const startM = Number(startTime.split(':')[1])
+				const endTime = startH * 60 + startM + Number(this.ticketInfo.duration)
+				const endH = parseInt(endTime / 60) >= 24 ? parseInt(endTime / 60) - 24 : parseInt(endTime / 60)
+				const endM = endTime % 60
+				const formatH = endH < 10 ? `0${endH}` : endH
+				const formatM = endM < 10 ? `0${endM}` : endM
+				return `${formatH}:${formatM}`
 			},
 			//绘制canvas
 			drawTemplate() {
 				if (this.loading) return
 				const width = 300
+				const mainColor = this.colorMap[this.ticketInfo.color] || 'grey'
 				const ctx = uni.createCanvasContext('TemplateB', this);
+				ctx.clearRect(0, 0, width, 720)
 				ctx.setTextAlign('left')
 				ctx.font = 'normal normal 12px Arial'
 				//票根
@@ -111,13 +147,13 @@
 				//票边框
 				ctx.beginPath();
 				const grd = ctx.createLinearGradient(0, 420, 0, 720)
-				grd.addColorStop(0, '#572723')
-				grd.addColorStop(1, '#b39e9d')
+				grd.addColorStop(0, mainColor.bg1)
+				grd.addColorStop(1, mainColor.bg2)
 				ctx.setFillStyle(grd)
 				ctx.fillRect(0, 420, 300, 300)
 				//影院
 				ctx.beginPath();
-				fillRoundRect(ctx, 10, 430, width - 20, 60, 6, '#461e1c')
+				fillRoundRect(ctx, 10, 430, width - 20, 60, 6, mainColor.bg3)
 				ctx.beginPath();
 				ctx.setFontSize(14)
 				ctx.setFillStyle('#fff')
@@ -129,7 +165,7 @@
 				//上半圆
 				ctx.beginPath();
 				ctx.arc(150, 460, 20, 0.1 * Math.PI, 0.9 * Math.PI, false);
-				ctx.setFillStyle('#461e1c')
+				ctx.setFillStyle(mainColor.bg3)
 				ctx.fill();
 				//标题
 				ctx.beginPath();
@@ -142,7 +178,7 @@
 				ctx.font = 'normal normal 14px Arial'
 				ctx.setFontSize(13)
 				ctx.setFillStyle('#202020')
-				ctx.fillText('国语2D 1张', 20, 540);
+				ctx.fillText(`${this.ticketInfo.lang} 1张`, 20, 540);
 				//日期
 				ctx.beginPath();
 				ctx.setFontSize(12)
@@ -166,23 +202,16 @@
 				ctx.setFillStyle('#333333')
 				ctx.fillText(this.ticketInfo.seat, 120, 595);
 				//虚线
+				ctx.save();
 				ctx.beginPath();
 				ctx.setLineDash([8, 6], 4);
 				ctx.moveTo(20, 622);
 				ctx.lineTo(280, 622);
 				ctx.setStrokeStyle('#7d7e7b')
 				ctx.stroke();
-				//小图
-				// ctx.save();
-				// ctx.beginPath()
-				// ctx.translate(230, 485);
-				// drawRoundRectPath(ctx,  50, 70, 6, '#fff');
-				// ctx.setFillStyle('#fff')  //若是给定了值就用给定的值否则给予默认值
-				// ctx.fill();
-				// ctx.clip()
-				// uni.downloadFile(())
-				// ctx.drawImage(this.ticketInfo.bigImg,  0, 0,50,70)
-				// ctx.restore();
+				ctx.closePath()
+				ctx.restore()
+
 				//感谢
 				ctx.beginPath();
 				ctx.font = 'normal bold 16px Arial'

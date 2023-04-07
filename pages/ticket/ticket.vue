@@ -1,7 +1,9 @@
 <template>
 	<view class="ticket">
-		<!-- <TemplateA ref="TemplateA" :ticketInfo="ticketInfo" @save="saveTemplate"></TemplateA> -->
-		<TemplateB ref="TemplateB" :ticketInfo="ticketInfo" @save="saveTemplate"></TemplateB>
+		<TemplateA v-if="currentTemplate==='TemplateA'" ref="TemplateA" :ticketInfo="ticketInfo" @save="saveTemplate">
+		</TemplateA>
+		<TemplateB v-else-if="currentTemplate==='TemplateB'" ref="TemplateB" :ticketInfo="ticketInfo"
+			@save="saveTemplate"></TemplateB>
 		<view class="btn-area">
 			<button type="primary" @click="createTicket">生成票根</button>
 			<button @click="refresh">刷 新</button>
@@ -53,13 +55,17 @@
 				});
 			},
 		},
-		onLoad() {
+		onLoad(option) {
+			this.currentTemplate = option.id
+			console.log(option,this.currentTemplate)
 			//从缓存中读取
 			const storageForm = uni.getStorageSync('ticket_form')
 			if (storageForm) {
 				this.ticketInfo = JSON.parse(storageForm)
 			} else {
 				this.ticketInfo = {
+					color: 'grey',
+					lang: '国语2D',
 					bigImg: img,
 					mainTitle: '流浪地球2',
 					subTitle: 'The Wandering Earth II',

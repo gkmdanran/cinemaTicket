@@ -26,6 +26,9 @@
 						<uni-forms-item label="时长(分钟):" name="duration" v-if="formSetting.duration">
 							<uni-easyinput type="number" v-model="ticketInfo.duration" maxlength="8" />
 						</uni-forms-item>
+						<uni-forms-item label="语种:" name="lang" v-if="formSetting.lang">
+							<uni-easyinput type="text" v-model="ticketInfo.lang" placeholder="例:国语2D" maxlength="99" />
+						</uni-forms-item>
 						<uni-forms-item label="分类:" name="kinds" v-if="formSetting.kinds">
 							<uni-easyinput type="text" v-model="ticketInfo.kinds" placeholder="例:科幻/冒险/灾难"
 								maxlength="99" />
@@ -51,6 +54,11 @@
 							<uni-datetime-picker type="datetime" :clear-icon="false" v-model="ticketInfo.dateTime"
 								hide-second />
 						</uni-forms-item>
+						<uni-forms-item label="主题色:" name="color" v-if="formSetting.color">
+							<uni-data-checkbox v-model="ticketInfo.color" :localdata="colorList"></uni-data-checkbox>
+						</uni-forms-item>
+
+
 					</uni-forms>
 					<view class="btn-area">
 						<button @click="cancel">取 消</button>
@@ -75,6 +83,22 @@
 		},
 		data() {
 			return {
+				colorList: [{
+					text: '灰色',
+					value: 'grey'
+				}, {
+					text: '绿色',
+					value: 'green'
+				}, {
+					text: '蓝色',
+					value: 'blue'
+				}, {
+					text: '棕色',
+					value: 'brown'
+				}, {
+					text: '红色',
+					value: 'red'
+				}],
 				recommendFilm: null,
 				hotFilmList: [],
 				showCrop: false,

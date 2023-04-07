@@ -7,18 +7,25 @@
             }
         },
         {
-            "path": "pages/ticket/ticket",
-            "style": {
-                "navigationBarTitleText": "票根制作",
-                "enablePullDownRefresh": false
-            }
-        },
-        {
             "path": "pages/picture/picture",
             "style": {
                 "navigationBarTitleText": "票根",
                 "enablePullDownRefresh": false
             }
+        }
+    ],
+    "subPackages": [
+        {
+            "root": "subPages/",
+            "pages": [
+                {
+                    "path": "ticket/ticket",
+                    "style": {
+                        "navigationBarTitleText": "票根制作",
+                        "enablePullDownRefresh": false
+                    }
+                }
+            ]
         }
     ],
     "globalStyle": {

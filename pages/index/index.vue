@@ -31,7 +31,7 @@
 			},
 			makeTicket(id) {
 				uni.navigateTo({
-					url: `/pages/ticket/ticket?id=${id}`
+					url: `/subPages/ticket/ticket?id=${id}`
 				});
 			}
 		}

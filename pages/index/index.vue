@@ -21,10 +21,7 @@
 				}, {
 					id: 'TemplateA',
 					name: '详细版',
-				}, {
-					id: 'TemplateC',
-					name: '自定义',
-				}]
+				},]
 
 			}
 		},

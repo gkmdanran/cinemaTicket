@@ -132,7 +132,6 @@
 				const width = 300
 				const mainColor = this.colorMap[this.ticketInfo.color] || 'grey'
 				const ctx = uni.createCanvasContext('TemplateB', this);
-				ctx.clearRect(0, 0, width, 720)
 				ctx.setTextAlign('left')
 				ctx.font = 'normal normal 12px Arial'
 				//票根

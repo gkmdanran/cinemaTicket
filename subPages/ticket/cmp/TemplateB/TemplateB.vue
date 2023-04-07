@@ -170,15 +170,8 @@
 				ctx.arc(150, 460, 20, 0.1 * Math.PI, 0.9 * Math.PI, false);
 				ctx.setFillStyle(mainColor.bg3)
 				ctx.fill();
-				//标题
-				ctx.beginPath();
-				ctx.font = 'normal bold 16px Arial'
-				ctx.setFontSize(16)
-				ctx.setFillStyle('#222222')
-				ctx.fillText(this.ticketInfo.mainTitle, 20, 515);
 				//类型
 				ctx.beginPath();
-				ctx.font = 'normal normal 14px Arial'
 				ctx.setFontSize(13)
 				ctx.setFillStyle('#202020')
 				ctx.fillText(`${this.ticketInfo.lang} 1张`, 20, 540);
@@ -187,15 +180,9 @@
 				ctx.setFontSize(12)
 				ctx.setFillStyle('#686868')
 				ctx.fillText(this.ticketInfo.dateTime.split(' ')[0], 20, 575);
-				//时间
-				ctx.beginPath();
-				ctx.font = 'normal bold 13px Arial'
-				ctx.setFontSize(13)
-				ctx.setFillStyle('#333333')
-				ctx.fillText(`${this.ticketInfo.dateTime.split(' ')[1]}~${this.getEndTime()}`, 20, 595);
+				
 				//影厅
 				ctx.beginPath();
-				ctx.font = 'normal normal 13px Arial'
 				ctx.setFontSize(12)
 				ctx.setFillStyle('#777777')
 				ctx.fillText(this.ticketInfo.hall, 120, 575);
@@ -207,14 +194,25 @@
 				//虚线
 				ctx.save();
 				ctx.beginPath();
-				ctx.setLineDash([8, 6], 4);
+				ctx.setLineDash([8, 5], 4);
 				ctx.moveTo(20, 622);
 				ctx.lineTo(280, 622);
 				ctx.setStrokeStyle('#7d7e7b')
 				ctx.stroke();
 				ctx.closePath()
 				ctx.restore()
-
+				//标题
+				ctx.beginPath();
+				ctx.font = 'normal bold 16px Arial'
+				ctx.setFontSize(16)
+				ctx.setFillStyle('#222222')
+				ctx.fillText(this.ticketInfo.mainTitle, 20, 515);
+				//时间
+				ctx.beginPath();
+				ctx.font = 'normal bold 13px Arial'
+				ctx.setFontSize(13)
+				ctx.setFillStyle('#333333')
+				ctx.fillText(`${this.ticketInfo.dateTime.split(' ')[1]}~${this.getEndTime()}`, 20, 595);
 				//感谢
 				ctx.beginPath();
 				ctx.font = 'normal bold 16px Arial'

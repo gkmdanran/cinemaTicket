@@ -2,7 +2,8 @@
 // #ifndef VUE3
 import Vue from 'vue'
 import App from './App'
-
+import share from './util/share.js'
+Vue.mixin(share)
 Vue.config.productionTip = false
 
 App.mpType = 'app'

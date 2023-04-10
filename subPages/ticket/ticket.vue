@@ -4,12 +4,14 @@
 		</TemplateA>
 		<TemplateB v-else-if="currentTemplate==='TemplateB'" ref="TemplateB" :ticketInfo="ticketInfo"
 			@save="saveTemplate"></TemplateB>
-		<view class="btn-area">
-			<button type="primary" @click="createTicket">生成票根</button>
-			<button @click="refresh">刷 新</button>
-			<button @click="editTicket">编辑票根</button>
-		</view>
-		<view class="tips">票根如果出现排版错位，请点击刷新按钮</view>
+		<template v-if="currentTemplate">
+			<view class="btn-area">
+				<button type="primary" @click="createTicket">生成票根</button>
+				<button @click="refresh">刷 新</button>
+				<button @click="editTicket">编辑票根</button>
+			</view>
+			<view class="tips">票根如果出现排版错位，请点击刷新按钮</view>
+		</template>
 		<uni-popup ref="alertDialog" type="dialog">
 			<uni-popup-dialog type="info" cancelText="取消" confirmText="同意" title="告知" content="此小程序仅供娱乐,不可商用!不可用作非法途径!"
 				@confirm="dialogConfirm"></uni-popup-dialog>
@@ -21,7 +23,7 @@
 	import TemplateA from './cmp/TemplateA/TemplateA.vue'
 	import TemplateB from './cmp/TemplateB/TemplateB.vue'
 	export default {
-		components:{
+		components: {
 			TemplateA,
 			TemplateB
 		},
@@ -62,7 +64,6 @@
 		},
 		onLoad(option) {
 			this.currentTemplate = option.id
-			console.log(option,this.currentTemplate)
 			//从缓存中读取
 			const storageForm = uni.getStorageSync('ticket_form')
 			if (storageForm) {

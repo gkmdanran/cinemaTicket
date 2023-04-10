@@ -18,8 +18,6 @@
 </template>
 
 <script>
-	const img = require('../../static/lldq.jpg')
-	const icon = require('../../static/finish.png')
 	import TemplateA from './cmp/TemplateA/TemplateA.vue'
 	import TemplateB from './cmp/TemplateB/TemplateB.vue'
 	export default {
@@ -30,7 +28,7 @@
 		data() {
 			return {
 				ticketInfo: {},
-				currentTemplate: 'TemplateB'
+				currentTemplate: ''
 			}
 		},
 		methods: {
@@ -73,7 +71,7 @@
 				this.ticketInfo = {
 					color: 'grey',
 					lang: '国语2D',
-					bigImg: img,
+					bigImg: '/static/lldq.jpg',
 					mainTitle: '流浪地球2',
 					subTitle: 'The Wandering Earth II',
 					duration: 147,
@@ -84,7 +82,7 @@
 					seat: '5排14座',
 					price: '52.00',
 					dateTime: '2023-01-23 14:10',
-					finishIcon: icon,
+					finishIcon: '/static/finish.png',
 				}
 			}
 		},

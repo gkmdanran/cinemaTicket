@@ -34,7 +34,8 @@
 								maxlength="99" />
 						</uni-forms-item>
 						<uni-forms-item label="上映日期:" name="releaseTime" v-if="formSetting.releaseTime">
-							<uni-datetime-picker type="date" :clear-icon="false" v-model="ticketInfo.releaseTime" />
+							<uni-datetime-picker type="date" :clear-icon="false" v-model="ticketInfo.releaseTime"
+								@change="changeReleaseTime" />
 						</uni-forms-item>
 						<uni-forms-item label="影院:" name="cinema" v-if="formSetting.cinema">
 							<uni-easyinput type="text" v-model="ticketInfo.cinema" placeholder="例:幸福蓝海国际影城"
@@ -112,6 +113,9 @@
 			};
 		},
 		methods: {
+			changeReleaseTime(val) {
+				this.ticketInfo.dateTime = val ? `${val} 12:00` : this.ticketInfo.dateTime
+			},
 			searchFilm() {
 				uni.request({
 					method: 'GET',
@@ -131,6 +135,8 @@
 						this.ticketInfo.duration = res.data.detailMovie.dur || ''
 						this.ticketInfo.kinds = (res.data.detailMovie.cat || '').split(',').join('/')
 						this.ticketInfo.releaseTime = res.data.detailMovie.rt || ''
+						this.ticketInfo.dateTime = res.data.detailMovie.rt ?
+							`${res.data.detailMovie.rt} 12:00` : this.ticketInfo.dateTime
 					}
 				});
 			},
@@ -159,14 +165,14 @@
 			//选择图片
 			selectImg(rsp) {
 				uni.chooseMedia({
-				  count: 1,
-				  mediaType: ['image',],
-				  sourceType: ['album',],
-				  success:(res)=> {
-					this.preBigImg = this.ticketInfo.bigImg
-					this.ticketInfo.bigImg = res.tempFiles[0].tempFilePath;
-					this.showCrop = true
-				  }
+					count: 1,
+					mediaType: ['image', ],
+					sourceType: ['album', ],
+					success: (res) => {
+						this.preBigImg = this.ticketInfo.bigImg
+						this.ticketInfo.bigImg = res.tempFiles[0].tempFilePath;
+						this.showCrop = true
+					}
 				})
 				// uni.chooseImage({
 				// 	count: 1,

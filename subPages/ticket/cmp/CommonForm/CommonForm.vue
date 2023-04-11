@@ -158,14 +158,25 @@
 			},
 			//选择图片
 			selectImg(rsp) {
-				uni.chooseImage({
-					count: 1,
-					success: (rst) => {
-						this.preBigImg = this.ticketInfo.bigImg
-						this.ticketInfo.bigImg = rst.tempFilePaths[0];
-						this.showCrop = true
-					}
-				});
+				uni.chooseMedia({
+				  count: 1,
+				  mediaType: ['image',],
+				  sourceType: ['album',],
+				  success:(res)=> {
+					this.preBigImg = this.ticketInfo.bigImg
+					this.ticketInfo.bigImg = res.tempFiles[0].tempFilePath;
+					this.showCrop = true
+				  }
+				})
+				// uni.chooseImage({
+				// 	count: 1,
+				// 	success: (rst) => {
+				// 		console.log(rst)
+				// 		this.preBigImg = this.ticketInfo.bigImg
+				// 		this.ticketInfo.bigImg = rst.tempFilePaths[0];
+				// 		this.showCrop = true
+				// 	}
+				// });
 			},
 			cropImg() {
 				this.preBigImg = this.ticketInfo.bigImg

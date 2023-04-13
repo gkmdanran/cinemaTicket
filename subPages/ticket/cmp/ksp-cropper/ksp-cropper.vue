@@ -9,7 +9,7 @@
 	<view class="panel">
 		<view class="body" @touchstart="mwx.touchstart" @touchmove="mwx.touchmove" @touchend="mwx.touchend" @touchcancel="mwx.touchcancel">
 			<view class="image-wrap" :class="{transit: transit}" :change:rect="mwx.changeImage" :rect="image">
-				<image class="image" :class="{transit: transit}" :src="url" @load="imageLoad"/>
+				<image class="image" :class="{transit: transit}" :src="url" @load="imageLoad" @error="handleImageError"/>
 			</view>
 			<view class="mask"></view>
 			<view class="frame" :class="{transit: transit}" :change:rect="mwx.changeFrame" :rect="frame">
@@ -108,6 +108,13 @@ export default {
 		};
 	},
 	methods: {
+		handleImageError(){
+			uni.showToast({
+				icon:'error',
+				title: '图片过大！',
+				duration: 1000
+			});
+		},
 		imageLoad(event) {
             uni.getImageInfo({
                 src: this.url,

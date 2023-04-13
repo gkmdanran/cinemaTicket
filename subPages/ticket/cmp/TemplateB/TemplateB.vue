@@ -257,7 +257,7 @@
 		position: relative;
 
 		.canvas {
-			top: -720px;
+			top: -9999px;
 			width: 300px;
 			height: 720px;
 		}

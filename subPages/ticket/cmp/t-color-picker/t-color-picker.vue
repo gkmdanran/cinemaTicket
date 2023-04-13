@@ -22,11 +22,11 @@
 							<view class="t-circle" :style="{ left: site[1].left - 12 + 'px' }"></view>
 						</view>
 					</view>
-					<view class="t-controller boxs" @touchstart="touchstart($event, 2)" @touchmove="touchmove($event, 2)" @touchend="touchend($event, 2)">
+					<!-- <view class="t-controller boxs" @touchstart="touchstart($event, 2)" @touchmove="touchmove($event, 2)" @touchend="touchend($event, 2)">
 						<view class="t-transparency">
 							<view class="t-circle" :style="{ left: site[2].left - 12 + 'px' }"></view>
 						</view>
-					</view>
+					</view> -->
 				</view>
 			</view>
 			<!-- <view class="t-result__box">
@@ -655,7 +655,7 @@
 	.t-control-box__item {
 		display: flex;
 		flex-direction: column;
-		justify-content: space-between;
+		justify-content: center;
 		width: 100%;
 		padding: 0 30upx;
 	}

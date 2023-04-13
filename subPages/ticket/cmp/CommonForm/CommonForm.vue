@@ -2,6 +2,7 @@
 	<div class="common-form">
 		<ksp-cropper v-if="showCrop" mode="ratio" :width="300" :height="420" :maxWidth="1024" :maxHeight="1024"
 			:url="ticketInfo.bigImg" @cancel="cancelCrop" @ok="confirmCrop" />
+		<t-color-picker ref="colorPicker" @confirm="confirm" :color="{r:63, g:84, b:102,a:1}"></t-color-picker>
 		<uni-drawer ref="drawer" mode="right" :width="320" :maskClick="false">
 			<scroll-view scroll-y="true" class="scroll-y">
 				<view class="form">
@@ -56,10 +57,21 @@
 								hide-second />
 						</uni-forms-item>
 						<uni-forms-item label="主题色:" name="color" v-if="formSetting.color">
-							<uni-data-checkbox v-model="ticketInfo.color" :localdata="colorList"></uni-data-checkbox>
+							<uni-data-checkbox v-model="ticketInfo.color" :localdata="colorList">
+							</uni-data-checkbox>
+							<template v-if="ticketInfo.color==='self'">
+								<view class="color-item">
+									<text class="color-name">边框背景色:</text>
+									<view class="show-color" :style="{background:`${selfColor.deepColor}`}"></view>
+									<view class="choose" @click="choseColor('border')">选 择</view>
+								</view>
+								<view class="color-item">
+									<text class="color-name">影院背景色:</text>
+									<view class="show-color" :style="{background:`${selfColor.shallowColor}`}"></view>
+									<view class="choose" @click="choseColor('cinema')">选 择</view>
+								</view>
+							</template>
 						</uni-forms-item>
-
-
 					</uni-forms>
 					<view class="btn-area">
 						<button @click="cancel">取 消</button>
@@ -73,10 +85,12 @@
 
 <script>
 	import kspCropper from '../ksp-cropper/ksp-cropper.vue'
+	import tColorPicker from '../t-color-picker/t-color-picker.vue'
 	export default {
 		name: "CommonForm",
 		components: {
-			kspCropper
+			kspCropper,
+			tColorPicker
 		},
 		props: {
 			form: {
@@ -85,9 +99,19 @@
 			formSetting: {
 				type: Object,
 			},
+			selfColor: {
+				type: Object,
+				default: function() {
+					return {
+						deepColor: '#3d5265',
+						shallowColor: '#324252',
+					}
+				}
+			}
 		},
 		data() {
 			return {
+				currentColorType: '',
 				colorList: [{
 					text: '灰色',
 					value: 'grey'
@@ -103,6 +127,9 @@
 				}, {
 					text: '红色',
 					value: 'red'
+				}, {
+					text: '自定义',
+					value: 'self'
 				}],
 				recommendFilm: null,
 				hotFilmList: [],
@@ -115,6 +142,23 @@
 		methods: {
 			changeReleaseTime(val) {
 				this.ticketInfo.dateTime = val ? `${val} 12:00` : this.ticketInfo.dateTime
+			},
+			choseColor(type) {
+				this.currentColorType = type
+				this.$refs.colorPicker.open();
+			},
+			confirm(e) {
+				if (this.currentColorType === 'border') {
+					this.$emit('getSelfColor', {
+						deepColor: e.hex,
+						shallowColor: this.selfColor.shallowColor
+					})
+				} else if (this.currentColorType === 'cinema') {
+					this.$emit('getSelfColor', {
+						deepColor: this.selfColor.deepColor,
+						shallowColor: e.hex
+					})
+				}
 			},
 			searchFilm() {
 				uni.request({
@@ -164,25 +208,14 @@
 			},
 			//选择图片
 			selectImg(rsp) {
-				uni.chooseMedia({
+				uni.chooseImage({
 					count: 1,
-					mediaType: ['image', ],
-					sourceType: ['album', ],
-					success: (res) => {
+					success: (rst) => {
 						this.preBigImg = this.ticketInfo.bigImg
-						this.ticketInfo.bigImg = res.tempFiles[0].tempFilePath;
+						this.ticketInfo.bigImg = rst.tempFilePaths[0];
 						this.showCrop = true
 					}
-				})
-				// uni.chooseImage({
-				// 	count: 1,
-				// 	success: (rst) => {
-				// 		console.log(rst)
-				// 		this.preBigImg = this.ticketInfo.bigImg
-				// 		this.ticketInfo.bigImg = rst.tempFilePaths[0];
-				// 		this.showCrop = true
-				// 	}
-				// });
+				});
 			},
 			cropImg() {
 				this.preBigImg = this.ticketInfo.bigImg
@@ -240,6 +273,31 @@
 					.name {
 						color: #e04e0f;
 						margin: 0 3px;
+					}
+				}
+
+				.color-item {
+					height: 20px;
+					margin-top: 10px;
+					display: flex;
+					align-items: center;
+
+					.color-name {
+						color: #606266;
+					}
+
+					.show-color {
+						margin-left: 5px;
+						width: 15px;
+						height: 15px;
+					}
+
+					.choose {
+						text-align: center;
+						width: 80px;
+						height: 20px;
+						line-height: 20px;
+						color: #00a2ff;
 					}
 				}
 

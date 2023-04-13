@@ -10,7 +10,8 @@
             "path": "pages/picture/picture",
             "style": {
                 "navigationBarTitleText": "票根",
-                "enablePullDownRefresh": false
+                "enablePullDownRefresh": false,
+				"disableScroll":false
             }
         }
     ],
@@ -22,7 +23,8 @@
                     "path": "ticket/ticket",
                     "style": {
                         "navigationBarTitleText": "票根制作",
-                        "enablePullDownRefresh": false
+                        "enablePullDownRefresh": false,
+						"disableScroll":false
                     }
                 }
             ]

@@ -4,7 +4,8 @@
 		<view class="wrap">
 			<image :src="ticketUrl" mode="widthFix" :style="{width:'300px'}"></image>
 		</view>
-		<CommonForm ref="form" @save="handleSave" :form="ticketInfo" :formSetting="formSetting">
+		<CommonForm ref="form" @save="handleSave" :form="ticketInfo" :formSetting="formSetting" :selfColor="selfColor"
+			@getSelfColor="selfColor=$event">
 		</CommonForm>
 	</view>
 </template>
@@ -18,7 +19,7 @@
 	import CommonForm from '../CommonForm/CommonForm.vue'
 	export default {
 		name: "TemplateB",
-		components:{
+		components: {
 			CommonForm
 		},
 		props: {
@@ -28,31 +29,30 @@
 		},
 		data() {
 			return {
+				selfColor: {
+					deepColor: '#3d5265',
+					shallowColor: '#324252',
+				},
 				colorMap: {
 					'grey': {
-						bg1: '#3d5265',
-						bg2: '#cbcfd3',
-						bg3: '#324252',
+						deepColor: '#3d5265',
+						shallowColor: '#324252',
 					},
 					'green': {
-						bg1: '#296067',
-						bg2: '#e3e8e8',
-						bg3: '#224d53',
+						deepColor: '#296067',
+						shallowColor: '#224d53',
 					},
 					'blue': {
-						bg1: '#1e324a',
-						bg2: '#d3d6db',
-						bg3: '#17283a',
+						deepColor: '#1e324a',
+						shallowColor: '#17283a',
 					},
 					'brown': {
-						bg1: '#67633e',
-						bg2: '#d7d7cf',
-						bg3: '#534f32',
+						deepColor: '#67633e',
+						shallowColor: '#534f32',
 					},
 					'red': {
-						bg1: '#572723',
-						bg2: '#b39e9d',
-						bg3: '#461e1c',
+						deepColor: '#572723',
+						shallowColor: '#461e1c',
 					},
 
 				},
@@ -78,6 +78,7 @@
 			},
 			//保存预览
 			handleSave(form) {
+				uni.setStorageSync('self_color', JSON.stringify(this.selfColor))
 				this.$emit('save', form)
 			},
 			//生成图片
@@ -134,7 +135,8 @@
 			drawTemplate() {
 				if (this.loading) return
 				const width = 300
-				const mainColor = this.colorMap[this.ticketInfo.color] || 'grey'
+				const mainColor = this.ticketInfo.color === 'self' ? this.selfColor : this.colorMap[this.ticketInfo
+					.color || 'grey']
 				const ctx = uni.createCanvasContext('TemplateB', this);
 				ctx.setTextAlign('left')
 				ctx.font = 'normal normal 12px Arial'
@@ -149,14 +151,14 @@
 				ctx.drawImage(this.ticketInfo.bigImg, 0, 0, 300, 420)
 				//票边框
 				ctx.beginPath();
-				const grd = ctx.createLinearGradient(0, 420, 0, 720)
-				grd.addColorStop(0, mainColor.bg1)
-				grd.addColorStop(1, mainColor.bg2)
+				const grd = ctx.createLinearGradient(0, 420, 0, 800)
+				grd.addColorStop(0, mainColor.deepColor)
+				grd.addColorStop(1, '#f5f5f5')
 				ctx.setFillStyle(grd)
 				ctx.fillRect(0, 420, 300, 300)
 				//影院
 				ctx.beginPath();
-				fillRoundRect(ctx, 10, 430, width - 20, 60, 6, mainColor.bg3)
+				fillRoundRect(ctx, 10, 430, width - 20, 60, 6, mainColor.shallowColor)
 				ctx.beginPath();
 				ctx.setFontSize(14)
 				ctx.setFillStyle('#fff')
@@ -168,7 +170,7 @@
 				//上半圆
 				ctx.beginPath();
 				ctx.arc(150, 460, 20, 0.1 * Math.PI, 0.9 * Math.PI, false);
-				ctx.setFillStyle(mainColor.bg3)
+				ctx.setFillStyle(mainColor.shallowColor)
 				ctx.fill();
 				//类型
 				ctx.beginPath();
@@ -180,7 +182,6 @@
 				ctx.setFontSize(12)
 				ctx.setFillStyle('#686868')
 				ctx.fillText(this.ticketInfo.dateTime.split(' ')[0], 20, 575);
-				
 				//影厅
 				ctx.beginPath();
 				ctx.setFontSize(12)
@@ -243,6 +244,10 @@
 			},
 		},
 		mounted() {
+			const storageColor = uni.getStorageSync('self_color')
+			if (storageColor) {
+				this.selfColor = JSON.parse(storageColor)
+			}
 			this.drawTemplate()
 		}
 	}

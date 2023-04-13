@@ -165,7 +165,7 @@
 						y: 650
 					},
 					{
-						txt: this.ticketInfo.seat,
+						txt: this.ticketInfo.seat.split('/')[0],
 						x: leftOffset + infoWidth,
 						y: 650
 					},
@@ -195,6 +195,12 @@
 						drawText(ctx, item.txt, item.x, item.y, infoWidth - 5)
 					}
 				})
+				if(this.ticketInfo.seat.split('/')[1]){
+					ctx.beginPath();
+					ctx.setFontSize(12)
+					ctx.setFillStyle('#928d89')
+					ctx.fillText(this.ticketInfo.seat.split('/')[1], leftOffset + infoWidth, 666)
+				}
 				//虚线
 				ctx.beginPath();
 				ctx.setLineDash([10, 5], 5);

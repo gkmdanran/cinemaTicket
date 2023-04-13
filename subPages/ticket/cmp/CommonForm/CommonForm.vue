@@ -44,10 +44,10 @@
 						</uni-forms-item>
 						<uni-forms-item label="影厅:" name="hall" v-if="formSetting.hall">
 							<uni-easyinput type="text" v-model="ticketInfo.hall" placeholder="例:5号全景声厅"
-								maxlength="18" />
+								maxlength="99" />
 						</uni-forms-item>
 						<uni-forms-item label="座位:" name="seat" v-if="formSetting.seat">
-							<uni-easyinput type="text" v-model="ticketInfo.seat" placeholder="例:5排14座" maxlength="16" />
+							<uni-easyinput type="text" v-model="ticketInfo.seat" placeholder="例:5排14座(多个座位/分隔)" maxlength="99" />
 						</uni-forms-item>
 						<uni-forms-item label="票价(￥):" name="price" v-if="formSetting.price">
 							<uni-easyinput type="digit" v-model="ticketInfo.price" maxlength="8" />

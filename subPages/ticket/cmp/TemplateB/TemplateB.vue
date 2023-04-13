@@ -176,7 +176,7 @@
 				ctx.beginPath();
 				ctx.setFontSize(13)
 				ctx.setFillStyle('#202020')
-				ctx.fillText(`${this.ticketInfo.lang} 1张`, 20, 540);
+				ctx.fillText(`${this.ticketInfo.lang} ${this.ticketInfo.seat.split('/').length}张`, 20, 540);
 				//日期
 				ctx.beginPath();
 				ctx.setFontSize(12)
@@ -191,7 +191,7 @@
 				ctx.beginPath();
 				ctx.setFontSize(12)
 				ctx.setFillStyle('#333333')
-				ctx.fillText(this.ticketInfo.seat, 120, 595);
+				ctx.fillText(this.ticketInfo.seat.split('/').join(' / '), 120, 595);
 				//虚线
 				ctx.save();
 				ctx.beginPath();

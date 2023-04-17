@@ -1,7 +1,7 @@
 <template>
 	<div class="common-form">
-		<ksp-cropper v-if="showCrop" mode="ratio" :width="300" :height="420" :maxWidth="1024" :maxHeight="1024"
-			:url="ticketInfo.bigImg" @cancel="cancelCrop" @ok="confirmCrop" />
+		<ksp-cropper v-if="showCrop" mode="ratio" :width="cropWidth" :height="cropHeight" :maxWidth="cropWidth*2"
+			:maxHeight="cropHeight*2" :url="ticketInfo.bigImg" @cancel="cancelCrop" @ok="confirmCrop" />
 		<t-color-picker ref="colorPicker" @confirm="confirm" :color="{r:63, g:84, b:102,a:1}"></t-color-picker>
 		<uni-drawer ref="drawer" mode="right" :width="320" :maskClick="false">
 			<scroll-view scroll-y="true" class="scroll-y">
@@ -47,7 +47,8 @@
 								maxlength="99" />
 						</uni-forms-item>
 						<uni-forms-item label="座位:" name="seat" v-if="formSetting.seat">
-							<uni-easyinput type="text" v-model="ticketInfo.seat" placeholder="例:5排14座(多个座位/分隔)" maxlength="99" />
+							<uni-easyinput type="text" v-model="ticketInfo.seat" placeholder="例:5排14座(多个座位/分隔)"
+								maxlength="99" />
 						</uni-forms-item>
 						<uni-forms-item label="票价(￥):" name="price" v-if="formSetting.price">
 							<uni-easyinput type="digit" v-model="ticketInfo.price" maxlength="8" />
@@ -111,6 +112,8 @@
 		},
 		data() {
 			return {
+				cropWidth: 300,
+				cropHeight: 420,
 				currentColorType: '',
 				colorList: [{
 					text: '灰色',
@@ -167,6 +170,15 @@
 					success: (res) => {
 						if (!res.data.detailMovie) return
 						if (res.data.detailMovie.img) {
+							uni.getImageInfo({
+								src: res.data.detailMovie.img,
+								success: ({
+									width
+								}) => {
+									this.cropWidth = width
+									this.cropHeight = Math.floor(width * 1.4)
+								}
+							})
 							uni.downloadFile({
 								url: res.data.detailMovie.img,
 								success: (res) => {
@@ -214,6 +226,15 @@
 						this.preBigImg = this.ticketInfo.bigImg
 						this.ticketInfo.bigImg = rst.tempFilePaths[0];
 						this.showCrop = true
+						uni.getImageInfo({
+							src: this.ticketInfo.bigImg,
+							success: ({
+								width
+							}) => {
+								this.cropWidth = width
+								this.cropHeight = Math.floor(width * 1.4)
+							}
+						})
 					}
 				});
 			},

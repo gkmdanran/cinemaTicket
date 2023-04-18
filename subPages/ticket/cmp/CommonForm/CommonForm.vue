@@ -10,14 +10,16 @@
 						<uni-forms-item label="标题:" name="mainTitle" v-if="formSetting.mainTitle">
 							<uni-easyinput type="text" v-model="ticketInfo.mainTitle" placeholder="例:流浪地球2"
 								@blur="handleBlur" maxlength="99" />
-							<view v-if="recommendFilm" class="recommned" @click="searchFilm">
+							<view v-if="recommendFilm&&recommendFilm.name&&recommendFilm.id" class="recommned"
+								@click="searchFilm">
 								<view>
 									<text>猜你想找</text><text class="name">《{{recommendFilm.name}}》</text>
 								</view>
 							</view>
 						</uni-forms-item>
 						<uni-forms-item label="海报:" name="bigImg" v-if="formSetting.bigImg">
-							<image :src="ticketInfo.bigImg" mode="widthFix" @click="cropImg" show-menu-by-longpress></image>
+							<image :src="ticketInfo.bigImg" mode="widthFix" @click="cropImg" show-menu-by-longpress>
+							</image>
 							<button size="mini" type="primary" @click="selectImg">更换海报</button>
 						</uni-forms-item>
 						<uni-forms-item label="副标题:" name="subTitle" v-if="formSetting.subTitle">
@@ -164,6 +166,7 @@
 				}
 			},
 			searchFilm() {
+				if (!this.recommendFilm) return
 				uni.request({
 					method: 'GET',
 					url: `https://m.maoyan.com/ajax/detailmovie?movieId=${this.recommendFilm.id}`,
@@ -176,7 +179,7 @@
 									width
 								}) => {
 									this.cropWidth = width
-									this.cropHeight = Math.cell(width * 1.4)
+									this.cropHeight = Math.ceil(width * 1.4)
 								}
 							})
 							uni.downloadFile({
@@ -209,9 +212,9 @@
 				});
 			},
 			handleBlur() {
-				this.recommendFilm = this.hotFilmList.find(item => this.ticketInfo.mainTitle && item.name.includes(this
+				const targetFilm = this.hotFilmList.find(item => this.ticketInfo.mainTitle && item.name.includes(this
 					.ticketInfo.mainTitle))
-				this.recommendFilm = this.recommendFilm === undefined ? null : this.recommendFilm
+				this.recommendFilm = targetFilm === undefined ? null : targetFilm
 			},
 			//打开抽屉
 			showDrawer() {
@@ -232,7 +235,7 @@
 								width
 							}) => {
 								this.cropWidth = width
-								this.cropHeight = Math.cell(width * 1.4)
+								this.cropHeight = Math.ceil(width * 1.4)
 							}
 						})
 					}

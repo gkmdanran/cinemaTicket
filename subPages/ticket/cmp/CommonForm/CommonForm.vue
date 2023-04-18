@@ -1,7 +1,7 @@
 <template>
 	<div class="common-form">
-		<ksp-cropper v-if="showCrop" mode="ratio" :width="cropWidth" :height="cropHeight" :maxWidth="cropWidth*2"
-			:maxHeight="cropHeight*2" :url="ticketInfo.bigImg" @cancel="cancelCrop" @ok="confirmCrop" />
+		<ksp-cropper v-if="showCrop" mode="ratio" :width="cropWidth" :height="cropHeight" :maxWidth="1000"
+			:maxHeight="1400" :url="ticketInfo.bigImg" @cancel="cancelCrop" @ok="confirmCrop" />
 		<t-color-picker ref="colorPicker" @confirm="confirm" :color="{r:63, g:84, b:102,a:1}"></t-color-picker>
 		<uni-drawer ref="drawer" mode="right" :width="320" :maskClick="false">
 			<scroll-view scroll-y="true" class="scroll-y">
@@ -17,7 +17,7 @@
 							</view>
 						</uni-forms-item>
 						<uni-forms-item label="海报:" name="bigImg" v-if="formSetting.bigImg">
-							<image :src="ticketInfo.bigImg" mode="widthFix" @click="cropImg"></image>
+							<image :src="ticketInfo.bigImg" mode="widthFix" @click="cropImg" show-menu-by-longpress></image>
 							<button size="mini" type="primary" @click="selectImg">更换海报</button>
 						</uni-forms-item>
 						<uni-forms-item label="副标题:" name="subTitle" v-if="formSetting.subTitle">
@@ -176,7 +176,7 @@
 									width
 								}) => {
 									this.cropWidth = width
-									this.cropHeight = Math.floor(width * 1.4)
+									this.cropHeight = Math.cell(width * 1.4)
 								}
 							})
 							uni.downloadFile({
@@ -232,7 +232,7 @@
 								width
 							}) => {
 								this.cropWidth = width
-								this.cropHeight = Math.floor(width * 1.4)
+								this.cropHeight = Math.cell(width * 1.4)
 							}
 						})
 					}

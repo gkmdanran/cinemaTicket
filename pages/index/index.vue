@@ -6,9 +6,10 @@
 		</view>
 		<view class="saoma">
 			<text> 领取大红包啦！保存下方图片打开z hi怤保扫一扫，或搜索 816201194</text>
-			<image src="../../static/hb.jpg" mode="widthFix" show-menu-by-longpress></image>
 		</view>
-
+		<div class="saoma">
+			<image src="../../static/hb.jpg" mode="widthFix" show-menu-by-longpress></image>
+		</div>
 		<view class="tips" @click="showDialog">如有疑问请联系作者，wx: <text
 				style="color:#e06c75;margin-left: 5px;">gkmdanran</text></view>
 		<uni-popup ref="wxDialog" type="dialog">
@@ -54,12 +55,14 @@
 			margin- top: 40px;
 			;
 		}
-		.saoma{
+
+		.saoma {
 			font-size: 14px;
 			margin-top: 20px;
 			text-align: center;
 			color: red;
 		}
+
 		.tips {
 			height: 30px;
 			line-height: 30px;

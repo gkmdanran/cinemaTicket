@@ -5,10 +5,11 @@
 				@click="makeTicket(item.id)">{{item.name}}</button>
 		</view>
 		<view class="saoma">
-			<text> 领取大红包啦！保存下方图片打开z hi怤保扫一扫，或搜索 816201194</text>
+			<text> 送福利啦，点击下方按钮领取大额红包！</text>
 		</view>
-		<div class="saoma">
-			<image src="../../static/hb.jpg" mode="widthFix" show-menu-by-longpress></image>
+		<div class="btns">
+			<button type="warn" size="mini" @click="copy('zfb')">支付宝红包</button>
+			<button type="primary" size="mini" @click="copy('ele')" style="background-color: #35b1d9;">饿了么红包</button>
 		</div>
 		<view class="tips" @click="showDialog">如有疑问请联系作者，wx: <text
 				style="color:#e06c75;margin-left: 5px;">gkmdanran</text></view>
@@ -40,6 +41,29 @@
 				uni.navigateTo({
 					url: `/subPages/ticket/ticket?id=${id}`
 				});
+			},
+			copy(type) {
+				if (type == 'zfb') {
+					uni.setClipboardData({
+						data: '816139694',
+						success: function() {
+							uni.showToast({
+								title: '复制成功！请打开支付宝粘贴搜索后领取',
+								icon: 'none'
+							})
+						}
+					})
+				} else if (type === 'ele') {
+					uni.setClipboardData({
+						data: '0復制此段 2:/＄dmmrORR＄~.👉饿了么App👈【快來領外賣紅包，最高20元，人人都有哦~】',
+						success: function() {
+							uni.showToast({
+								title: '领取成功！请打开饿了么使用',
+								icon: 'none'
+							})
+						}
+					})
+				}
 			}
 		}
 	}
@@ -56,11 +80,17 @@
 			;
 		}
 
+		.btns {
+			display: flex;
+			justify-content: space-between;
+		}
+
 		.saoma {
 			font-size: 14px;
 			margin-top: 20px;
 			text-align: center;
 			color: red;
+			margin-bottom: 10px;
 		}
 
 		.tips {

@@ -3,7 +3,7 @@
 		<ksp-cropper v-if="showCrop" mode="ratio" :width="300" :height="420" :maxWidth="1024" :maxHeight="1024"
 			:url="ticketInfo.bigImg" @cancel="cancelCrop" @ok="confirmCrop" />
 		<t-color-picker ref="colorPicker" @confirm="confirm" :color="{r:63, g:84, b:102,a:1}"></t-color-picker>
-		<uni-drawer ref="drawer" mode="right" :width="320" :maskClick="false">
+		<uni-drawer ref="drawer" mode="right" :width="getDeviceWidth()" :maskClick="false">
 			<scroll-view scroll-y="true" class="scroll-y">
 				<view class="form">
 					<uni-forms :modelValue="ticketInfo" label-align="right" label-width="90px">
@@ -51,6 +51,7 @@
 						<uni-forms-item label="座位:" name="seat" v-if="formSetting.seat">
 							<uni-easyinput type="text" v-model="ticketInfo.seat" placeholder="例:5排14座(多个座位/分隔)"
 								maxlength="99" />
+							<view class="tips">多个座位：5排14座/5排15座</view>
 						</uni-forms-item>
 						<uni-forms-item label="票价(￥):" name="price" v-if="formSetting.price">
 							<uni-easyinput type="digit" v-model="ticketInfo.price" maxlength="8" />
@@ -247,6 +248,9 @@
 				this.recommendFilm = null
 				this.$refs['drawer'].close()
 			},
+			getDeviceWidth(){
+				return uni.getSystemInfoSync().windowWidth * 0.9
+			}
 		},
 		created() {
 			this.getHotFilm()
@@ -260,6 +264,9 @@
 
 <style scoped lang="less">
 	.common-form {
+		.tips{
+			color:#ccc
+		}
 		.scroll-y {
 			height: 100%;
 

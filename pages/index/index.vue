@@ -4,13 +4,6 @@
 			<button type="primary" size="mini" v-for="item in templateList" :key="item.id"
 				@click="makeTicket(item.id)">{{item.name}}</button>
 		</view>
-		<view class="saoma">
-			<text> 送福利啦，点击下方按钮领取大额红包！</text>
-		</view>
-		<div class="btns">
-			<button type="warn" size="mini" @click="copy('zfb')">支付宝红包</button>
-			<button type="primary" size="mini" @click="copy('ele')" style="background-color: #35b1d9;">饿了么红包</button>
-		</div>
 		<view class="tips" @click="showDialog">如有疑问请联系作者，wx: <text
 				style="color:#e06c75;margin-left: 5px;">gkmdanran</text></view>
 		<uni-popup ref="wxDialog" type="dialog">

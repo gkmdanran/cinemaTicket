@@ -4,6 +4,8 @@
 		</TemplateA>
 		<TemplateB v-else-if="currentTemplate==='TemplateB'" ref="TemplateB" :ticketInfo="ticketInfo"
 			@save="saveTemplate"></TemplateB>
+		<TemplateC v-else-if="currentTemplate==='TemplateC'" ref="TemplateC" :ticketInfo="ticketInfo"
+			@save="saveTemplate"></TemplateC>
 		<template v-if="currentTemplate">
 			<view class="btn-area">
 				<button type="primary" @click="createTicket">生成票根</button>
@@ -22,10 +24,12 @@
 <script>
 	import TemplateA from './cmp/TemplateA/TemplateA.vue'
 	import TemplateB from './cmp/TemplateB/TemplateB.vue'
+	import TemplateC from './cmp/TemplateC/TemplateC.vue'
 	export default {
 		components: {
 			TemplateA,
-			TemplateB
+			TemplateB,
+			TemplateC
 		},
 		data() {
 			return {

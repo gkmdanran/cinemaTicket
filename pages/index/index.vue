@@ -17,12 +17,17 @@
 		data() {
 			return {
 				templateList: [{
-					id: 'TemplateB',
-					name: '简约版',
-				}, {
-					id: 'TemplateA',
-					name: '详细版',
-				}, ]
+						id: 'TemplateB',
+						name: '简约版',
+					}, {
+						id: 'TemplateA',
+						name: '详细版',
+					},
+					{
+						id: 'TemplateC',
+						name: '截图版',
+					},
+				]
 
 			}
 		},
@@ -35,29 +40,6 @@
 					url: `/subPages/ticket/ticket?id=${id}`
 				});
 			},
-			copy(type) {
-				if (type == 'zfb') {
-					uni.setClipboardData({
-						data: '816139694',
-						success: function() {
-							uni.showToast({
-								title: '复制成功！请打开支付宝粘贴搜索后领取',
-								icon: 'none'
-							})
-						}
-					})
-				} else if (type === 'ele') {
-					uni.setClipboardData({
-						data: '0復制此段 2:/＄dmmrORR＄~.👉饿了么App👈【快來領外賣紅包，最高20元，人人都有哦~】',
-						success: function() {
-							uni.showToast({
-								title: '领取成功！请打开饿了么使用',
-								icon: 'none'
-							})
-						}
-					})
-				}
-			}
 		}
 	}
 </script>

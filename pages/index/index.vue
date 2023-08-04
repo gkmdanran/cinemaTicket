@@ -10,7 +10,7 @@
 		<uni-popup ref="wxDialog" type="dialog">
 			<image v-if="dialogType==='wx'" src="../../static/me.jpg" mode="widthFix" show-menu-by-longpress></image>
 			<view v-else style="background: #fff;text-align: center;">
-				<view>长按图片扫码打赏</view>
+				<view>长按二维码保存后，扫码打赏</view>
 				<image src="../../static/skm.jpg" mode="widthFix" show-menu-by-longpress></image>
 			</view>
 		</uni-popup>

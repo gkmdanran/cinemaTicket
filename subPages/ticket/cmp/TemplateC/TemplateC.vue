@@ -21,8 +21,8 @@
 			return {
 				loading: false,
 				ticketUrl: '',
-				filmImg: '/static/lldq.jpg',
-				ticketImg: '/static/lldq.jpg',
+				filmImg: '/static/fsb.jpg',
+				ticketImg: '/static/fsbticket.jpg',
 				filmHeight:420,
 				ticketHeight:450,
 			}

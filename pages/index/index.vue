@@ -4,10 +4,15 @@
 			<button type="primary" size="mini" v-for="item in templateList" :key="item.id"
 				@click="makeTicket(item.id)">{{item.name}}</button>
 		</view>
-		<view class="tips" @click="showDialog">如有疑问请联系作者，wx: <text
+		<view class="tips" @click="showDialog('wx')">如有疑问请联系作者，wx: <text
 				style="color:#e06c75;margin-left: 5px;">gkmdanran</text></view>
+		<view  @click="showDialog('money')" style="color:#e06c75;text-align: center;margin-top: 15px;">点击打赏作者~</view>
 		<uni-popup ref="wxDialog" type="dialog">
-			<image src="../../static/me.jpg" mode="widthFix" show-menu-by-longpress></image>
+			<image v-if="dialogType==='wx'" src="../../static/me.jpg" mode="widthFix" show-menu-by-longpress></image>
+			<view v-else style="background: #fff;text-align: center;">
+				<view>长按图片扫码打赏</view>
+				<image src="../../static/skm.jpg" mode="widthFix" show-menu-by-longpress></image>
+			</view>
 		</uni-popup>
 	</view>
 </template>
@@ -16,6 +21,7 @@
 	export default {
 		data() {
 			return {
+				dialogType: 'wx',
 				templateList: [{
 						id: 'TemplateB',
 						name: '简约版',
@@ -32,7 +38,8 @@
 			}
 		},
 		methods: {
-			showDialog() {
+			showDialog(type) {
+				this.dialogType = type
 				this.$refs.wxDialog.open()
 			},
 			makeTicket(id) {

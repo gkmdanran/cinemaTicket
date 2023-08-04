@@ -1,9 +1,9 @@
 <template>
 	<div class="form-c">
-		<ksp-cropper v-if="showCrop" :mode="cropMode" :width="300" :height="filmHeight" :maxWidth="1024"
-			:maxHeight="1024" :url="filmImg" @cancel="cancelCrop" @ok="confirmCrop" />
-		<ksp-cropper v-if="showTicketCrop" :mode="cropMode" :width="300" :height="ticketHeight" :maxWidth="1024"
-			:maxHeight="1024" :url="ticketImg" @cancel="cancelTicketCrop" @ok="confirmTicketCrop" />
+		<ksp-cropper v-if="showCrop" :mode="cropMode" :width="300" :height="cropMode==='ratio'?420:filmHeight"
+			:maxWidth="1024" :maxHeight="1024" :url="filmImg" @cancel="cancelCrop" @ok="confirmCrop" />
+		<ksp-cropper v-if="showTicketCrop" :mode="cropMode" :width="300" :height="cropMode==='ratio'?450:ticketHeight"
+			:maxWidth="1024" :maxHeight="1024" :url="ticketImg" @cancel="cancelTicketCrop" @ok="confirmTicketCrop" />
 		<uni-drawer ref="drawer" mode="right" :width="getDeviceWidth()" :maskClick="false">
 			<scroll-view scroll-y="true" class="scroll-y">
 				<view class="form">
@@ -33,6 +33,7 @@
 							<button size="mini" type="primary" @click="selectTicketImg">更换截图</button>
 						</uni-forms-item>
 					</uni-forms>
+					<div class="tips" style="text-align: center;margin-bottom: 15px;">通过旋转和非等比裁剪或许能做横版票根</div>
 					<view class="btn-area">
 						<button @click="cancel">取 消</button>
 						<button type="primary" @click="save">预 览</button>
@@ -114,12 +115,11 @@
 				this.showCrop = false
 			},
 			confirmTicketCrop(ev) {
-				console.log(ev)
 				this.ticketImg = ev.path;
 				uni.getImageInfo({
 					src: this.ticketImg,
 					success: (ticket) => {
-						this.ticketHeight = Math.floor(ticket.height * 300 / ticket.width)
+						this.ticketHeight = ticket.height * 300 / ticket.width
 					},
 				});
 				this.showTicketCrop = false
@@ -162,7 +162,8 @@
 <style scoped lang="less">
 	.form-c {
 		.tips {
-			color: #ccc
+			color: #ccc;
+			font-size: 12px;
 		}
 
 		.scroll-y {
@@ -174,7 +175,6 @@
 
 				image {
 					width: 100px !important;
-					// height: auto;
 					margin-right: 10px;
 				}
 

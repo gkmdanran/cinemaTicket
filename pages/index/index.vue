@@ -39,7 +39,7 @@
 	export default {
 		data() {
 			return {
-				words:'',
+				words: '',
 				templateList: [{
 						id: 'TemplateB',
 						name: '简约版',
@@ -50,6 +50,9 @@
 					{
 						id: 'TemplateC',
 						name: '截图版',
+					}, {
+						id: 'TemplateD',
+						name: '横  版',
 					},
 				]
 
@@ -67,7 +70,7 @@
 							})
 						}
 					})
-				} else if(type==='tb'){
+				} else if (type === 'tb') {
 					uni.setClipboardData({
 						data: '【淘宝】https://m.tb.cn/h.521O4Dj?tk=GvygdEjQjVh CZ3457 「收藏级别的电影票| 小红书网红定制电影票根保存电影票影迷书签」',
 						success: function() {
@@ -77,7 +80,7 @@
 							})
 						}
 					})
-				} else{
+				} else {
 					uni.setClipboardData({
 						data: '1050625146',
 						success: function() {
@@ -111,7 +114,8 @@
 			width: 100vw !important;
 			vertical-align: middle;
 		}
-		.copy-img{
+
+		.copy-img {
 			position: absolute;
 			width: 30rpx;
 			height: 30rpx;
@@ -124,7 +128,7 @@
 			top: 1155rpx;
 			width: 100%;
 			box-sizing: border-box;
-			padding:0 90rpx;
+			padding: 0 90rpx;
 			font-size: 24rpx;
 			text-align: center;
 			color: #8b9091;

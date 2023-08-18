@@ -1,6 +1,6 @@
 <template>
 	<div class="common-form">
-		<ksp-cropper v-if="showCrop" mode="ratio" :width="300" :height="420" :maxWidth="1024" :maxHeight="1024"
+		<ksp-cropper v-if="showCrop" mode="ratio" :width="cropper.width" :height="cropper.height" :maxWidth="1024" :maxHeight="1024"
 			:url="ticketInfo.bigImg" @cancel="cancelCrop" @ok="confirmCrop" />
 		<t-color-picker ref="colorPicker" @confirm="confirm" :color="{r:63, g:84, b:102,a:1}"></t-color-picker>
 		<uni-drawer ref="drawer" mode="right" :width="getDeviceWidth()" :maskClick="false">
@@ -60,6 +60,9 @@
 							<uni-datetime-picker type="datetime" :clear-icon="false" v-model="ticketInfo.dateTime"
 								hide-second />
 						</uni-forms-item>
+						<uni-forms-item label="评分:" name="star" v-if="formSetting.star">
+							<uni-rate :max="5" v-model="ticketInfo.star" />
+						</uni-forms-item>
 						<uni-forms-item label="主题色:" name="color" v-if="formSetting.color">
 							<uni-data-checkbox v-model="ticketInfo.color" :localdata="colorList">
 							</uni-data-checkbox>
@@ -97,6 +100,15 @@
 			tColorPicker
 		},
 		props: {
+			cropper:{
+				type: Object,
+				default: function() {
+					return {
+						width: 300,
+						height: 420
+					}
+				}
+			},
 			form: {
 				type: Object,
 			},
@@ -314,7 +326,6 @@
 
 				image {
 					width: 100px !important;
-					height: 140px !important;
 					margin-right: 10px;
 				}
 

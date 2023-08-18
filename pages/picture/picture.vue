@@ -1,9 +1,10 @@
 <template>
 	<view class="picture">
-		<div class="wrap" v-if="ticketUrl">
+		<view class="tips">长按票根，保存图片至本地相册</view>
+		<view class="wrap" v-if="ticketUrl">
 			<image :src="ticketUrl" mode="widthFix" show-menu-by-longpress></image>
-		</div>
-		<div class="tips">长按票根，保存图片至本地相册</div>
+		</view>
+		<view class="download" v-if="ticketUrl" @click="downloadTicket">下载图片</view>
 	</view>
 </template>
 
@@ -15,6 +16,17 @@
 			}
 		},
 		methods: {
+			downloadTicket() {
+				uni.saveImageToPhotosAlbum({
+					filePath: this.ticketUrl,
+					success: function() {
+						uni.showToast({
+							title: '图片下载成功',
+							icon: 'none'
+						})
+					}
+				})
+			}
 		},
 		onLoad() {
 			this.ticketUrl = uni.getStorageSync('ticket_url') || '';
@@ -27,7 +39,6 @@
 		.wrap {
 			width: 100%;
 			display: flex;
-			margin: 20px auto;
 			justify-content: center;
 
 			image {
@@ -36,9 +47,20 @@
 		}
 
 		.tips {
-			padding-bottom: 40px;
+			font-size: 14px;
+			padding: 10px 0;
 			text-align: center;
-			color: #f6cb75;
+			color: #465a6c;
+		}
+
+		.download {
+			text-align: center;
+			width: 100px;
+			margin: 0 auto;
+			font-size: 14px;
+			color: #00acff;
+			padding: 5px;
+			padding-bottom: 20px;
 		}
 	}
 </style>

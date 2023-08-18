@@ -149,7 +149,7 @@
 				this.$refs['drawer'].close()
 			},
 			getDeviceWidth() {
-				return uni.getSystemInfoSync().windowWidth * 0.9
+				return uni.getSystemInfoSync().windowWidth
 			}
 		},
 		mounted() {

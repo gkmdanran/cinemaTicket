@@ -1,7 +1,7 @@
 <template>
 	<view class="index-contaioner">
 		<image class="banner-img" src="../../static/banner.jpg" mode="widthFix"></image>
-
+		<image src="../../static/copy.png" class="copy-img" @click="copyUrl('')"></image>
 		<view class="shop-btn-area">
 			<view class="shop-btn" @click="copyUrl('xhs')">
 				<image src="../../static/click.png"></image>
@@ -19,7 +19,7 @@
 			</view>
 		</view>
 		<view class="words">
-			2023年8月18日前下单，参与小红书或料音的“关注+3连”活动，享满10张赠2张优惠。
+			2023年8月18日前下单，参与小红书或抖音的“关注+3连”活动，享满10张赠2张优惠。
 		</view>
 		<view class="tips" @click="showDialog()">
 			<text>如有疑问请联系作者，wx: </text>
@@ -59,7 +59,7 @@
 			copyUrl(type) {
 				if (type === 'xhs') {
 					uni.setClipboardData({
-						data: 'https://www.xiaohongshu.com/vendor/642a85e7d485a10001abd530?naviHidden=yes&xhsshare=CopyLink&appuid=59d2439d20e88f35cbe72680&apptime=1691569280',
+						data: 'https://www.xiaohongshu.com/goods-detail/642cd3d1c299b4000165373f?xhsshare=CopyLink&appuid=5fa638fd00000000010009c6&apptime=1691573651',
 						success: function() {
 							uni.showToast({
 								title: '链接复制成功！请打开浏览器粘贴网址访问小红书店铺~',
@@ -67,12 +67,22 @@
 							})
 						}
 					})
-				} else {
+				} else if(type==='tb'){
 					uni.setClipboardData({
-						data: '57！对到为出这心们时了天起信 https://m.tb.cn/h.5XRrfJQ  CZ0001 我分享给你了一个超赞的内容，快来看看吧',
+						data: '【淘宝】https://m.tb.cn/h.521O4Dj?tk=GvygdEjQjVh CZ3457 「收藏级别的电影票| 小红书网红定制电影票根保存电影票影迷书签」',
 						success: function() {
 							uni.showToast({
 								title: '复制链接成功！请打开淘宝访问店铺~',
+								icon: 'none'
+							})
+						}
+					})
+				} else{
+					uni.setClipboardData({
+						data: '1050625146',
+						success: function() {
+							uni.showToast({
+								title: '小红书ID复制成功~',
 								icon: 'none'
 							})
 						}
@@ -83,6 +93,7 @@
 				this.$refs.wxDialog.open()
 			},
 			makeTicket(id) {
+				console.log(id)
 				uni.navigateTo({
 					url: `/subPages/ticket/ticket?id=${id}`
 				});
@@ -95,18 +106,25 @@
 	.index-contaioner {
 		background-color: #fff;
 		position: relative;
-		padding-top: 10px;
 
 		.banner-img {
 			width: 100vw !important;
+			vertical-align: middle;
+		}
+		.copy-img{
+			position: absolute;
+			width: 30rpx;
+			height: 30rpx;
+			top: 110rpx;
+			right: 180rpx;
 		}
 
 		.words {
 			position: absolute;
-			top: 1190rpx;
+			top: 1155rpx;
 			width: 100%;
 			box-sizing: border-box;
-			padding: 90rpx;
+			padding:0 90rpx;
 			font-size: 24rpx;
 			text-align: center;
 			color: #8b9091;
@@ -116,7 +134,7 @@
 			box-sizing: border-box;
 			width: 100%;
 			position: absolute;
-			top: 1130rpx;
+			top: 1010rpx;
 			padding: 0 110rpx;
 			display: flex;
 			justify-content: space-between;
@@ -155,7 +173,7 @@
 			box-sizing: border-box;
 			width: 100%;
 			position: absolute;
-			top: 1400rpx;
+			top: 1280rpx;
 			padding: 0 30px;
 			display: flex;
 			justify-content: space-between;

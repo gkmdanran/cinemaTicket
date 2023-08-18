@@ -9,10 +9,10 @@
 		<template v-if="currentTemplate">
 			<view class="btn-area">
 				<button type="primary" @click="createTicket">生成票根</button>
-				<button @click="refresh">刷 新</button>
+				<!-- <button @click="refresh">刷 新</button> -->
 				<button @click="editTicket">编辑票根</button>
 			</view>
-			<view class="tips">票根如果出现排版错位，请点击刷新按钮</view>
+			<view class="tips">点击编辑票根</view>
 		</template>
 		<uni-popup ref="alertDialog" type="dialog">
 			<uni-popup-dialog type="info" cancelText="取消" confirmText="同意" title="告知" content="此小程序仅供娱乐,不可商用!不可用作非法途径!"

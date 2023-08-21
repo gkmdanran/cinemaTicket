@@ -2,7 +2,8 @@
 	<view class="picture">
 		<view class="tips">长按票根，保存图片至本地相册</view>
 		<view class="wrap" v-if="ticketUrl">
-			<image :src="ticketUrl" mode="widthFix" show-menu-by-longpress></image>
+			<image :src="ticketUrl" mode="heightFix" class="row-img" show-menu-by-longpress v-if="currentTemplate==='TemplateD'"></image>
+			<image :src="ticketUrl" mode="widthFix" class="column-img" show-menu-by-longpress v-else></image>
 		</view>
 		<view class="download" v-if="ticketUrl" @click="downloadTicket">下载图片</view>
 	</view>
@@ -12,7 +13,8 @@
 	export default {
 		data() {
 			return {
-				ticketUrl: ''
+				ticketUrl: '',
+				currentTemplate: ''
 			}
 		},
 		methods: {
@@ -28,7 +30,8 @@
 				})
 			}
 		},
-		onLoad() {
+		onLoad(option) {
+			this.currentTemplate = option.id
 			this.ticketUrl = uni.getStorageSync('ticket_url') || '';
 		}
 	}
@@ -38,11 +41,15 @@
 	.picture {
 		.wrap {
 			width: 100%;
-			display: flex;
-			justify-content: center;
+			overflow-y: auto;
+			text-align: center;
 
-			image {
+			.column-img {
+				margin: 0 auto;
 				width: 300px !important;
+			}
+			.row-img{
+				height: 300px !important;
 			}
 		}
 

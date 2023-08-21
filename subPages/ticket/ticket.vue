@@ -64,7 +64,7 @@
 			dialogConfirm() {
 				uni.setStorageSync('ticket_url', this.$refs[`${this.currentTemplate}`].ticketUrl)
 				uni.navigateTo({
-					url: '/pages/picture/picture'
+					url: `/pages/picture/picture?id=${this.currentTemplate}`
 				});
 			},
 		},

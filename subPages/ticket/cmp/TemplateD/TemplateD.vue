@@ -4,6 +4,7 @@
 		<view class="wrap">
 			<image :src="ticketUrl" mode="widthFix" :style="{width:'780px'}"></image>
 		</view>
+		<div class="tips">横板票根请左右滑动预览</div>
 		<CommonForm ref="form" @save="handleSave" :form="ticketInfo" :formSetting="formSetting"
 			:cropper="{width:490,height:250}">
 		</CommonForm>
@@ -85,7 +86,7 @@
 			drawTemplate() {
 				if (this.loading) return
 				const ctx = uni.createCanvasContext('TemplateD', this);
-				const bg = '#eae2e0'
+				const bg = '#f5f5f5'
 				const leftWidth = 550
 				const leftOffset = leftWidth + 30
 				ctx.beginPath();
@@ -116,26 +117,26 @@
 				]
 				points.forEach(p => {
 					ctx.beginPath();
-					ctx.arc(p.x, p.y, 14, 0, 360, false);
+					ctx.arc(p.x, p.y, 20, 0, 360, false);
 					ctx.setFillStyle(bg)
 					ctx.fill();
 				})
 				//上打孔点
 				ctx.beginPath();
 				ctx.arc(leftWidth, 0, 8, 0, 360, false);
-				ctx.setFillStyle('#7d7e7b')
+				ctx.setFillStyle('#000000')
 				ctx.fill();
 				//下打孔点
 				ctx.beginPath();
 				ctx.arc(leftWidth, 300, 8, 0, 360, false);
-				ctx.setFillStyle('#7d7e7b')
+				ctx.setFillStyle('#000000')
 				ctx.fill();
 				//虚线
 				ctx.beginPath();
 				ctx.setLineDash([10, 5], 5);
 				ctx.moveTo(leftWidth, 0);
 				ctx.lineTo(leftWidth, 300);
-				ctx.setStrokeStyle('#7d7e7b')
+				ctx.setStrokeStyle('#000000')
 				ctx.stroke();
 				//信息标题
 				ctx.font = 'normal normal 16px Arial'
@@ -210,8 +211,12 @@
 			position: absolute;
 			top: 0;
 			width: 100%;
-			// display: flex;
-			// justify-content: center;
+		}
+		.tips {
+			padding: 5px 0;
+			text-align: center;
+			font-size: 14px;
+			color: #465a6c;
 		}
 
 	}

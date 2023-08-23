@@ -42,17 +42,21 @@
 				words: '',
 				templateList: [{
 						id: 'TemplateB',
-						name: '简约版',
+						name: '简 约',
 					}, {
 						id: 'TemplateA',
-						name: '详细版',
+						name: '详 细',
 					},
 					{
 						id: 'TemplateC',
-						name: '截图版',
+						name: '拼 接',
 					}, {
 						id: 'TemplateD',
-						name: '横  版',
+						name: '横 版',
+					},
+					{
+						id: 'TemplateE',
+						name: '双 面',
 					},
 				]
 
@@ -193,6 +197,9 @@
 		}
 
 		.tips {
+			position: absolute;
+			top: 1400rpx;
+			width: 100%;
 			height: 30px;
 			line-height: 30px;
 			text-align: center;

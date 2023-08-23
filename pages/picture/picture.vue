@@ -1,8 +1,12 @@
 <template>
 	<view class="picture">
 		<view class="tips">长按票根，保存图片至本地相册</view>
+		<view class="wrap" v-if="picUrl">
+			<image :src="picUrl" mode="widthFix" class="column-img" show-menu-by-longpress></image>
+		</view>
 		<view class="wrap" v-if="ticketUrl">
-			<image :src="ticketUrl" mode="heightFix" class="row-img" show-menu-by-longpress v-if="currentTemplate==='TemplateD'"></image>
+			<image :src="ticketUrl" mode="heightFix" class="row-img" show-menu-by-longpress
+				v-if="currentTemplate==='TemplateD'"></image>
 			<image :src="ticketUrl" mode="widthFix" class="column-img" show-menu-by-longpress v-else></image>
 		</view>
 		<view class="download" v-if="ticketUrl" @click="downloadTicket">下载图片</view>
@@ -13,12 +17,18 @@
 	export default {
 		data() {
 			return {
+				picUrl: '',
 				ticketUrl: '',
 				currentTemplate: ''
 			}
 		},
 		methods: {
 			downloadTicket() {
+				if (this.picUrl) {
+					uni.saveImageToPhotosAlbum({
+						filePath: this.picUrl,
+					})
+				}
 				uni.saveImageToPhotosAlbum({
 					filePath: this.ticketUrl,
 					success: function() {
@@ -33,6 +43,10 @@
 		onLoad(option) {
 			this.currentTemplate = option.id
 			this.ticketUrl = uni.getStorageSync('ticket_url') || '';
+			let form = uni.getStorageSync('ticket_form')
+			if (form && this.currentTemplate === 'TemplateE') {
+				this.picUrl = JSON.parse(form).bigImg
+			}
 		}
 	}
 </script>
@@ -48,7 +62,8 @@
 				margin: 0 auto;
 				width: 300px !important;
 			}
-			.row-img{
+
+			.row-img {
 				height: 300px !important;
 			}
 		}

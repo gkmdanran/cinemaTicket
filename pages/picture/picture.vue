@@ -1,7 +1,7 @@
 <template>
 	<view class="picture">
 		<view class="tips">长按票根，保存图片至本地相册</view>
-		<view class="wrap" v-if="picUrl">
+		<view class="wrap" v-if="picUrl&&currentTemplate==='TemplateE'">
 			<image :src="picUrl" mode="widthFix" class="column-img" show-menu-by-longpress></image>
 		</view>
 		<view class="wrap" v-if="ticketUrl">
@@ -43,10 +43,7 @@
 		onLoad(option) {
 			this.currentTemplate = option.id
 			this.ticketUrl = uni.getStorageSync('ticket_url') || '';
-			let form = uni.getStorageSync('ticket_form')
-			if (form && this.currentTemplate === 'TemplateE') {
-				this.picUrl = JSON.parse(form).bigImg
-			}
+			this.picUrl = uni.getStorageSync('pic_url') || '';
 		}
 	}
 </script>

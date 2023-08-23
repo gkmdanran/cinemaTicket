@@ -1,13 +1,15 @@
 <template>
 	<view class="TemplateE">
 		<canvas class="canvas" canvas-id="TemplateE" id="TemplateE"></canvas>
+		<canvas class="canvas" canvas-id="TemplateE2" id="TemplateE2"></canvas>
 		<view class="wrap">
 			<view>正面海报：</view>
-			<image :src="ticketInfo.bigImg" mode="widthFix" :style="{width:'300px'}"></image>
+			<image :src="picUrl" mode="widthFix" :style="{width:'300px'}"></image>
 			<view>反面信息：</view>
 			<image :src="ticketUrl" mode="widthFix" :style="{width:'300px'}"></image>
 		</view>
-		<CommonForm ref="form" @save="handleSave" :form="ticketInfo" :formSetting="formSetting" :cropper="{width:300,height:600}">>
+		<CommonForm ref="form" @save="handleSave" :form="ticketInfo" :formSetting="formSetting"
+			:cropper="{width:300,height:600}">>
 		</CommonForm>
 	</view>
 </template>
@@ -31,6 +33,7 @@
 			return {
 				loading: false,
 				ticketUrl: '',
+				picUrl:'',
 				formSetting: {
 					bigImg: true,
 					mainTitle: true,
@@ -68,6 +71,15 @@
 						uni.hideLoading()
 					}
 				}, this)
+				uni.canvasToTempFilePath({
+					quality: 1,
+					canvasId: 'TemplateE2',
+					success: (res) => {
+						if (res.tempFilePath) {
+							this.picUrl = res.tempFilePath.replace(/[\r\n]/g, '');
+						}
+					},
+				}, this)
 			},
 			getEndTime() {
 				const startTime = this.ticketInfo.dateTime.split(' ')[1]
@@ -79,6 +91,15 @@
 				const formatH = endH < 10 ? `0${endH}` : endH
 				const formatM = endM < 10 ? `0${endM}` : endM
 				return `${formatH}:${formatM}`
+			},
+			drawImg() {
+				const ctx = uni.createCanvasContext('TemplateE2', this);
+				ctx.beginPath();
+				ctx.setFillStyle('#fff')
+				ctx.fillRect(0, 0, 300, 600);
+				ctx.beginPath();
+				ctx.drawImage(this.ticketInfo.bigImg, 0, 0, 300, 600)
+				ctx.draw()
 			},
 			//绘制canvas
 			drawTemplate() {
@@ -236,6 +257,7 @@
 				ctx.setFillStyle('#000000')
 				ctx.fillText('THANK YOU FOR WATCHING', 150, 570);
 				ctx.draw()
+				this.drawImg()
 				this.loading = true
 				uni.showLoading({
 					title: '生成中...',

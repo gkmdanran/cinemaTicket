@@ -1,6 +1,6 @@
 <template>
 	<div class="common-form">
-		<ksp-cropper v-if="showCrop" mode="ratio" :width="cropper.width" :height="cropper.height" :maxWidth="1024" :maxHeight="1024"
+		<ksp-cropper v-if="showCrop" mode="ratio" :width="cropper.width" :height="cropper.height" :maxWidth="cropper.width*4" :maxHeight="cropper.height*4"
 			:url="ticketInfo.bigImg" @cancel="cancelCrop" @ok="confirmCrop" />
 		<t-color-picker ref="colorPicker" @confirm="confirm" :color="{r:63, g:84, b:102,a:1}"></t-color-picker>
 		<uni-drawer ref="drawer" mode="right" :width="getDeviceWidth()" :maskClick="false">
@@ -24,7 +24,7 @@
 						</uni-forms-item>
 						<uni-forms-item label="副标题:" name="subTitle" v-if="formSetting.subTitle">
 							<uni-easyinput type="text" v-model="ticketInfo.subTitle"
-								placeholder="例:The Wandering Earth II" maxlength="99" />
+								placeholder="例:The Wandering Earth II（建议在26个字符以内）" maxlength="99" />
 						</uni-forms-item>
 						<uni-forms-item label="时长(分钟):" name="duration" v-if="formSetting.duration">
 							<uni-easyinput type="number" v-model="ticketInfo.duration" maxlength="8" />
@@ -41,15 +41,15 @@
 								@change="changeReleaseTime" />
 						</uni-forms-item>
 						<uni-forms-item label="影院:" name="cinema" v-if="formSetting.cinema">
-							<uni-easyinput type="text" v-model="ticketInfo.cinema" placeholder="例:幸福蓝海国际影城"
+							<uni-easyinput type="text" v-model="ticketInfo.cinema" placeholder="例:幸福蓝海国际影城（建议在15个字符以内）"
 								maxlength="99" />
 						</uni-forms-item>
 						<uni-forms-item label="影厅:" name="hall" v-if="formSetting.hall">
-							<uni-easyinput type="text" v-model="ticketInfo.hall" placeholder="例:5号全景声厅"
+							<uni-easyinput type="text" v-model="ticketInfo.hall" placeholder="例:5号全景声厅（建议在18个字符以内）"
 								maxlength="99" />
 						</uni-forms-item>
 						<uni-forms-item label="座位:" name="seat" v-if="formSetting.seat">
-							<uni-easyinput type="text" v-model="ticketInfo.seat" placeholder="例:5排14座(多个座位/分隔)"
+							<uni-easyinput type="text" v-model="ticketInfo.seat" placeholder="例:5排14座(多个座位/分隔,建议最多填写两个)"
 								maxlength="99" />
 							<view class="tips">多个座位：5排14座/5排15座</view>
 						</uni-forms-item>

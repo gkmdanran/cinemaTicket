@@ -1,19 +1,25 @@
 <template>
 	<div class="form-c">
-		<ksp-cropper v-if="showCrop" :mode="cropMode" :width="300" :height="cropMode==='ratio'?420:filmHeight"
-			:maxWidth="1024" :maxHeight="1024" :url="filmImg" @cancel="cancelCrop" @ok="confirmCrop" />
-		<ksp-cropper v-if="showTicketCrop" :mode="cropMode" :width="300" :height="cropMode==='ratio'?450:ticketHeight"
-			:maxWidth="1024" :maxHeight="1024" :url="ticketImg" @cancel="cancelTicketCrop" @ok="confirmTicketCrop" />
+		<ksp-cropper v-if="showCrop" :mode="cropMode" :width="300"
+			:height="cropMode==='ratio'?420:cropMode==='rowratio'?533:filmHeight" :maxWidth="1024" :maxHeight="1024"
+			:url="filmImg" @cancel="cancelCrop" @ok="confirmCrop" />
+		<ksp-cropper v-if="showTicketCrop" :mode="cropMode" :width="300"
+			:height="cropMode==='ratio'?450:cropMode==='rowratio'?200:ticketHeight" :maxWidth="1024" :maxHeight="1024"
+			:url="ticketImg" @cancel="cancelTicketCrop" @ok="confirmTicketCrop" />
 		<uni-drawer ref="drawer" mode="right" :width="getDeviceWidth()" :maskClick="false">
 			<scroll-view scroll-y="true" class="scroll-y">
 				<view class="form">
 					<uni-forms label-align="right" label-width="90px">
-						<uni-forms-item label="等比裁剪:" name="cropMode">
+						<uni-forms-item label="裁剪方式:" name="cropMode">
 							<uni-data-checkbox style="height:100%" v-model="cropMode" :localdata="[{
-								text: '是',
+								text: '竖向等比',
 								value: 'ratio'
-							}, {
-								text: '否',
+							},{
+								text: '横向等比',
+								value: 'rowratio'
+							}
+							, {
+								text: '非等比',
 								value: 'free'
 							}]"></uni-data-checkbox>
 							<view class="tips">推荐使用等比裁剪</view>
@@ -33,7 +39,7 @@
 							<button size="mini" type="primary" @click="selectTicketImg">更换截图</button>
 						</uni-forms-item>
 					</uni-forms>
-					<div class="tips" style="text-align: center;margin-bottom: 15px;">通过旋转和非等比裁剪或许能做横版票根</div>
+					<div class="tips" style="text-align: center;margin-bottom: 15px;">选择不同裁剪方式可以做出不同款式，例如：横版</div>
 					<view class="btn-area">
 						<button @click="cancel">取 消</button>
 						<button type="primary" @click="save">预 览</button>

@@ -19,7 +19,7 @@
 			</view>
 		</view>
 		<view class="words">
-			2023年8月18日前下单，参与小红书或抖音的“关注+3连”活动，享满10张赠2张优惠。
+			2023年9月10日前下单，参与小红书或抖音的“关注+3连”活动，享满5张赠1张优惠。
 		</view>
 		<view class="tips" @click="showDialog()">
 			<text>如有疑问请联系作者，wx: </text>

@@ -19,7 +19,9 @@
 			</view>
 		</view>
 		<view class="words">
-			2023年9月10日前下单，参与小红书或抖音的“关注+3连”活动，享满5张赠1张优惠。
+			<view>2023年10月15日前下单，参与小红书或抖音的“关注+3连”活动</view>
+			<view>享1、满10张赠2张优惠</view>
+			<view>&nbsp;2、满159元赠小票夹优惠</view>
 		</view>
 		<view class="tips" @click="showDialog()">
 			<text>如有疑问请联系作者，wx: </text>
@@ -54,10 +56,10 @@
 						id: 'TemplateD',
 						name: '横 版',
 					},
-					{
-						id: 'TemplateE',
-						name: '双 面',
-					},
+					// {
+					// 	id: 'TemplateE',
+					// 	name: '双 面',
+					// },
 				]
 
 			}

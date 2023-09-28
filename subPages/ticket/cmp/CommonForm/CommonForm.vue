@@ -1,6 +1,6 @@
 <template>
 	<div class="common-form">
-		<ksp-cropper v-if="showCrop" mode="ratio" :width="cropper.width" :height="cropper.height" :maxWidth="cropper.width*4" :maxHeight="cropper.height*4"
+		<ksp-cropper v-if="showCrop" mode="ratio" :width="cropper.width" :height="cropper.height" :maxWidth="1024" :maxHeight="1024"
 			:url="ticketInfo.bigImg" @cancel="cancelCrop" @ok="confirmCrop" />
 		<t-color-picker ref="colorPicker" @confirm="confirm" :color="{r:63, g:84, b:102,a:1}"></t-color-picker>
 		<uni-drawer ref="drawer" mode="right" :width="getDeviceWidth()" :maskClick="false">
@@ -240,6 +240,7 @@
 			},
 			//确认裁剪
 			confirmCrop(ev) {
+				console.log(ev)
 				this.ticketInfo.bigImg = ev.path;
 				this.showCrop = false
 			},

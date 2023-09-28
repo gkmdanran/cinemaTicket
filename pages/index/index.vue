@@ -19,9 +19,7 @@
 			</view>
 		</view>
 		<view class="words">
-			<view>2023年10月15日前下单，参与小红书或抖音的“关注+3连”活动</view>
-			<view>享1、满10张赠2张优惠</view>
-			<view>&nbsp;2、满159元赠小票夹优惠</view>
+			<view>2023年10月15日前下单，参与小红书或抖音的 “关注+3连”活动，享满10张赠2张优惠和满159元赠小票夹优惠。</view>
 		</view>
 		<view class="tips" @click="showDialog()">
 			<text>如有疑问请联系作者，wx: </text>
@@ -131,10 +129,10 @@
 
 		.words {
 			position: absolute;
-			top: 1155rpx;
+			top: 1148rpx;
 			width: 100%;
 			box-sizing: border-box;
-			padding: 0 90rpx;
+			padding: 0 70rpx;
 			font-size: 24rpx;
 			text-align: center;
 			color: #8b9091;
@@ -200,7 +198,7 @@
 
 		.tips {
 			position: absolute;
-			top: 1400rpx;
+			top: 1350rpx;
 			width: 100%;
 			height: 30px;
 			line-height: 30px;

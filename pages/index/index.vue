@@ -18,9 +18,9 @@
 			<view class="btn" v-for="item in templateList" :key="item.id" @click="makeTicket(item.id)">{{item.name}}
 			</view>
 		</view>
-		<view class="words">
+		<!-- <view class="words">
 			<view>2023年10月15日前下单，参与小红书或抖音的 “关注+3连”活动，享满10张赠2张优惠和满159元赠小票夹优惠。</view>
-		</view>
+		</view> -->
 		<view class="tips" @click="showDialog()">
 			<text>如有疑问请联系作者，wx: </text>
 			<text style="color:#e06c75;margin-left: 5px;">gkmdanran&nbsp;&nbsp;点击打赏作者~</text>
@@ -39,6 +39,7 @@
 	export default {
 		data() {
 			return {
+				count:0,
 				words: '',
 				templateList: [{
 						id: 'TemplateB',
@@ -97,13 +98,26 @@
 				}
 			},
 			showDialog(type) {
+				this.count+=1
 				this.$refs.wxDialog.open()
 			},
 			makeTicket(id) {
-				console.log(id)
-				uni.navigateTo({
-					url: `/subPages/ticket/ticket?id=${id}`
-				});
+				if(this.count>=6){
+					uni.navigateTo({
+						url: `/subPages/ticket/ticket?id=${id}`
+					});
+				}else{
+					uni.navigateToMiniProgram({
+						appId: 'wx904840bc042570b5',
+						path:"pages/detail/detail?type=film",
+						success(res) {
+							console.log(res)
+						},
+						fail: function(e) {
+							console.log(e)
+						}
+					})
+				}
 			},
 		},
 	}
@@ -181,8 +195,8 @@
 			box-sizing: border-box;
 			width: 100%;
 			position: absolute;
-			top: 1280rpx;
-			padding: 0 30px;
+			top: 1160rpx;
+			padding: 0 40px;
 			display: flex;
 			justify-content: space-between;
 
@@ -190,7 +204,7 @@
 				letter-spacing: 4rpx;
 				background: #526977;
 				border-radius: 16rpx;
-				padding: 12rpx;
+				padding: 12rpx 22rpx;
 				color: #fff;
 				font-size: 32rpx;
 			}
@@ -198,13 +212,13 @@
 
 		.tips {
 			position: absolute;
-			top: 1350rpx;
+			top: 1250rpx;
 			width: 100%;
 			height: 30px;
 			line-height: 30px;
 			text-align: center;
 			font-size: 12px;
-			color: #ccc1b9;
+			color: #000;
 		}
 
 		.skm-img {

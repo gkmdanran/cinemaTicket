@@ -102,6 +102,10 @@
 				this.$refs.wxDialog.open()
 			},
 			makeTicket(id) {
+				uni.navigateTo({
+						url: `/subPages/ticket/ticket?id=${id}`
+					});
+					return
 				if(this.count>=6){
 					uni.navigateTo({
 						url: `/subPages/ticket/ticket?id=${id}`

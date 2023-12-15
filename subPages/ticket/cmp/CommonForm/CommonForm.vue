@@ -18,9 +18,9 @@
 							</view>
 						</uni-forms-item>
 						<uni-forms-item label="海报:" name="bigImg" v-if="formSetting.bigImg">
-							<image :src="ticketInfo.bigImg" mode="widthFix" @click="cropImg" show-menu-by-longpress>
+							<image v-if="ticketInfo.bigImg" :src="ticketInfo.bigImg" mode="widthFix" @click="cropImg" >
 							</image>
-							<button size="mini" type="primary" @click="selectImg">更换海报</button>
+							<button size="mini" type="primary" @click="selectImg">{{ticketInfo.bigImg?'更换':'上传'}}海报</button>
 						</uni-forms-item>
 						<uni-forms-item label="副标题:" name="subTitle" v-if="formSetting.subTitle">
 							<uni-easyinput type="text" v-model="ticketInfo.subTitle"
@@ -63,18 +63,18 @@
 						<uni-forms-item label="评分:" name="star" v-if="formSetting.star">
 							<uni-rate :max="5" v-model="ticketInfo.star" />
 						</uni-forms-item>
-						<uni-forms-item label="主题色:" name="color" v-if="formSetting.color">
-							<uni-data-checkbox v-model="ticketInfo.color" :localdata="colorList">
+						<uni-forms-item label="主题色:" name="color" v-if="formSetting.deepColor">
+							<uni-data-checkbox v-model="tmpcolor" :localdata="colorList" @change="changeColor">
 							</uni-data-checkbox>
-							<template v-if="ticketInfo.color==='self'">
+							<template  v-if="formSetting.deepColor&&tmpcolor==='self'">
 								<view class="color-item">
 									<text class="color-name">边框背景色:</text>
-									<view class="show-color" :style="{background:`${selfColor.deepColor}`}"></view>
+									<view class="show-color" :style="{background:`${ticketInfo.deepColor}`}"></view>
 									<view class="choose" @click="choseColor('border')">选 择</view>
 								</view>
 								<view class="color-item">
 									<text class="color-name">影院背景色:</text>
-									<view class="show-color" :style="{background:`${selfColor.shallowColor}`}"></view>
+									<view class="show-color" :style="{background:`${ticketInfo.shallowColor}`}"></view>
 									<view class="choose" @click="choseColor('cinema')">选 择</view>
 								</view>
 							</template>
@@ -82,7 +82,7 @@
 					</uni-forms>
 					<view class="btn-area">
 						<button @click="cancel">取 消</button>
-						<button type="primary" @click="save">预 览</button>
+						<button type="primary" @click="save">生 成</button>
 					</view>
 				</view>
 			</scroll-view>
@@ -115,34 +115,33 @@
 			formSetting: {
 				type: Object,
 			},
-			selfColor: {
-				type: Object,
-				default: function() {
-					return {
-						deepColor: '#3d5265',
-						shallowColor: '#324252',
-					}
-				}
-			}
 		},
 		data() {
 			return {
 				currentColorType: '',
+				tmpcolor: '#324252',
+				colorMap: {
+					'#324252': '#3d5265',
+					'#224d53': '#296067',
+					'#17283a': '#1e324a',
+					'#534f32': '#67633e',
+					'#461e1c': '#572723',
+				},
 				colorList: [{
 					text: '灰色',
-					value: 'grey'
+					value: '#324252'
 				}, {
 					text: '绿色',
-					value: 'green'
+					value: '#224d53'
 				}, {
 					text: '蓝色',
-					value: 'blue'
+					value: '#17283a'
 				}, {
 					text: '棕色',
-					value: 'brown'
+					value: '#534f32'
 				}, {
 					text: '红色',
-					value: 'red'
+					value: '#461e1c'
 				}, {
 					text: '自定义',
 					value: 'self'
@@ -159,21 +158,24 @@
 			changeReleaseTime(val) {
 				this.ticketInfo.dateTime = val ? `${val} 12:00` : this.ticketInfo.dateTime
 			},
+			changeColor() {
+				if (this.tmpcolor === 'self') {
+					this.ticketInfo.shallowColor = '#324252'
+					this.ticketInfo.deepColor = '#3d5265'
+				} else {
+					this.ticketInfo.shallowColor = this.tmpcolor
+					this.ticketInfo.deepColor = this.colorMap[this.ticketInfo.shallowColor]
+				}
+			},
 			choseColor(type) {
 				this.currentColorType = type
 				this.$refs.colorPicker.open();
 			},
 			confirm(e) {
 				if (this.currentColorType === 'border') {
-					this.$emit('getSelfColor', {
-						deepColor: e.hex,
-						shallowColor: this.selfColor.shallowColor
-					})
+					this.ticketInfo.deepColor = e.hex
 				} else if (this.currentColorType === 'cinema') {
-					this.$emit('getSelfColor', {
-						deepColor: this.selfColor.deepColor,
-						shallowColor: e.hex
-					})
+					this.ticketInfo.shallowColor = e.hex
 				}
 			},
 			searchFilm() {
@@ -231,6 +233,9 @@
 						this.preBigImg = this.ticketInfo.bigImg
 						this.ticketInfo.bigImg = rst.tempFilePaths[0];
 						this.showCrop = true
+					},
+					fail:(err)=>{
+						console.log(err)
 					}
 				});
 			},
@@ -257,6 +262,30 @@
 			},
 			//保存
 			save() {
+				if (this.formSetting.bigImg && !this.ticketInfo.bigImg) {
+					return uni.showToast({
+						icon: 'none',
+						title: '请上传海报'
+					})
+				}
+				if (this.formSetting.ticketImg && !this.ticketInfo.ticketImg) {
+					return uni.showToast({
+						icon: 'none',
+						title: '请上传电影票截图'
+					})
+				}
+				if(this.formSetting.duration&&Number.isNaN(Number(this.ticketInfo.duration))){
+					return uni.showToast({
+						icon: 'none',
+						title: '时长只支持数字'
+					})
+				}
+				if(this.formSetting.price&&Number.isNaN(Number(this.ticketInfo.price))){
+					return uni.showToast({
+						icon: 'none',
+						title: '票价只支持数字'
+					})
+				}
 				this.$emit('save', JSON.parse(JSON.stringify(this.ticketInfo)))
 				this.recommendFilm = null
 				this.$refs['drawer'].close()

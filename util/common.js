@@ -1,12 +1,13 @@
 //文本换行
 export function drawText(ctx, str, leftWidth, initHeight, canvasWidth) {
+	str = str || ''
 	let lineWidth = 0;
 	let lastSubStrIndex = 0; //每次开始截取的字符串的索引
 	for (let i = 0; i < str.length; i++) {
 		lineWidth += ctx.measureText(str[i]).width;
 		if (lineWidth > canvasWidth) {
 			ctx.fillText(str.substring(lastSubStrIndex, i), leftWidth, initHeight); //绘制截取部分
-			initHeight += 16; //22为 文字大小20 + 2
+			initHeight += 48; //22为 文字大小20 + 2
 			lineWidth = 0;
 			lastSubStrIndex = i;
 		}
@@ -15,6 +16,7 @@ export function drawText(ctx, str, leftWidth, initHeight, canvasWidth) {
 		}
 	}
 }
+
 export function drawRoundRectPath(cxt, width, height, radius, fillColor) {
 	cxt.beginPath();
 	//从右下角顺时针绘制，弧度从0到1/2PI

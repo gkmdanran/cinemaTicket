@@ -27,16 +27,16 @@
 					</uni-forms>
 					<uni-forms label-align="right" label-width="90px">
 						<uni-forms-item label="海报:" name="filmImg">
-							<image :src="filmImg" mode="widthFix" @click="cropImg" show-menu-by-longpress>
+							<image v-if="filmImg" :src="filmImg" mode="widthFix" @click="cropImg" show-menu-by-longpress>
 							</image>
-							<button size="mini" type="primary" @click="selectImg">更换海报</button>
+							<button size="mini" type="primary" @click="selectImg">{{filmImg?'更换':'上传'}}海报</button>
 						</uni-forms-item>
 					</uni-forms>
 					<uni-forms label-align="right" label-width="90px">
 						<uni-forms-item label="电影票截图:" name="ticketImg">
-							<image :src="ticketImg" mode="widthFix" @click="cropTicketImg" show-menu-by-longpress>
+							<image v-if="ticketImg" :src="ticketImg" mode="widthFix" @click="cropTicketImg" show-menu-by-longpress>
 							</image>
-							<button size="mini" type="primary" @click="selectTicketImg">更换截图</button>
+							<button size="mini" type="primary" @click="selectTicketImg">{{ticketImg?'更换':'上传'}}截图</button>
 						</uni-forms-item>
 					</uni-forms>
 					<div class="tips" style="text-align: center;margin-bottom: 15px;">选择不同裁剪方式可以做出不同款式，例如：横版</div>

@@ -14,8 +14,8 @@
       :ticketInfo="ticketInfo"
       @save="saveTemplate"
     ></TemplateB>
-    <!-- <TemplateC v-else-if="currentTemplate==='TemplateC'" ref="TemplateC"></TemplateC>
-		<TemplateD v-else-if="currentTemplate==='TemplateD'" ref="TemplateD" :ticketInfo="ticketInfo"
+    <TemplateC v-else-if="currentTemplate==='TemplateC'" ref="TemplateC"></TemplateC>
+		<!-- <TemplateD v-else-if="currentTemplate==='TemplateD'" ref="TemplateD" :ticketInfo="ticketInfo"
 			@save="saveTemplate"></TemplateD>
 		<TemplateE v-else-if="currentTemplate==='TemplateE'" ref="TemplateE" :ticketInfo="ticketInfo"
 			@save="saveTemplate"></TemplateE> -->
@@ -81,6 +81,9 @@ export default {
               icon: "none",
             });
           },
+          fail(err){
+            console.log(err)
+          }
         });
       }
     },
